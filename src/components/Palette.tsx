@@ -31,7 +31,11 @@ const Palette = (palette: Palette) => {
       <div className={classes.colors}>
         {palette.colors.map((color) => {
           return (
-            <ColorBox key={Math.random() * 1000} background={color.color} />
+            <ColorBox
+              name={color.name}
+              key={Math.random() * 1000}
+              background={color.color}
+            />
           );
         })}
       </div>
