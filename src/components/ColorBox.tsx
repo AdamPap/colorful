@@ -1,5 +1,4 @@
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { CSSProperties } from "react";
 import colorBoxStyles from "../styles/ColorBoxStyles";
 
 interface ColorBoxProps {
@@ -11,10 +10,18 @@ interface ColorBoxProps {
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 
 const ColorBox = ({ background, name }: ColorBoxProps) => {
-  const classes = useStyles();
+  const { colorBox, copyButton, copyContainer, colorName, more, boxContent } =
+    useStyles();
+
   return (
-    <div style={{ background }} className={classes.colorBox}>
-      <span>{name}</span>
+    <div style={{ background }} className={colorBox}>
+      <div className={copyContainer}>
+        <div className={boxContent}>
+          <span className={colorName}>{name}</span>
+        </div>
+        <button className={copyButton}>Copy</button>
+      </div>
+      <span className={more}>More</span>
     </div>
   );
 };
