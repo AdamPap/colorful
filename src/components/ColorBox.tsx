@@ -1,3 +1,4 @@
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import colorBoxStyles from "../styles/ColorBoxStyles";
 
@@ -14,15 +15,20 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
     useStyles();
 
   return (
-    <div style={{ background }} className={colorBox}>
-      <div className={copyContainer}>
-        <div className={boxContent}>
-          <span className={colorName}>{name}</span>
+    <CopyToClipboard
+      text={background}
+      onCopy={() => console.log("Copied: ", background)}
+    >
+      <div style={{ background }} className={colorBox}>
+        <div className={copyContainer}>
+          <div className={boxContent}>
+            <span className={colorName}>{name}</span>
+          </div>
+          <button className={copyButton}>Copy</button>
         </div>
-        <button className={copyButton}>Copy</button>
+        <span className={more}>More</span>
       </div>
-      <span className={more}>More</span>
-    </div>
+    </CopyToClipboard>
   );
 };
 

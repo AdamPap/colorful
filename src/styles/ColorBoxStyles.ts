@@ -28,6 +28,7 @@ const colorBoxStyles = {
     background: "rgba(255, 255, 255, 0.2)",
     color: "black",
     border: "none",
+    cursor: "pointer",
     opacity: 0,
   },
   more: {
