@@ -39,6 +39,21 @@ const colorBoxStyles = {
     padding: "5px 10px",
   },
   colorName: {},
+  copyOverlay: {
+    opacity: "0",
+    position: "absolute",
+    zIndex: "0",
+    width: "100%",
+    height: "100%",
+    transition: "transform 0.6s ease-in-out",
+    transform: "scale(0.1)",
+  },
+  copyOverlayShow: {
+    opacity: "1",
+    zIndex: "10",
+    transform: "scale(50)",
+    position: "absolute",
+  },
 };
 
 export default colorBoxStyles;

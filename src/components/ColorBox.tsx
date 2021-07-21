@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import classNames from "classnames";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import colorBoxStyles from "../styles/ColorBoxStyles";
 
@@ -11,15 +13,43 @@ interface ColorBoxProps {
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 
 const ColorBox = ({ background, name }: ColorBoxProps) => {
-  const { colorBox, copyButton, copyContainer, colorName, more, boxContent } =
-    useStyles();
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (copied) {
+      let copyTimer = setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+      return () => {
+        clearTimeout(copyTimer);
+      };
+    }
+  }, [copied]);
+
+  const {
+    colorBox,
+    copyButton,
+    copyContainer,
+    colorName,
+    more,
+    boxContent,
+    copyOverlay,
+    copyOverlayShow,
+  } = useStyles();
+
+  const changeCopyState = () => {
+    console.log("COPIED");
+    setCopied(true);
+  };
 
   return (
-    <CopyToClipboard
-      text={background}
-      onCopy={() => console.log("Copied: ", background)}
-    >
+    <CopyToClipboard text={background} onCopy={() => changeCopyState()}>
       <div style={{ background }} className={colorBox}>
+        <div
+          style={{ background }}
+          className={classNames(copyOverlay, {
+            [copyOverlayShow]: copied,
+          })}
+        />
         <div className={copyContainer}>
           <div className={boxContent}>
             <span className={colorName}>{name}</span>

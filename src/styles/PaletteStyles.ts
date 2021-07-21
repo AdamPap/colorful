@@ -7,6 +7,7 @@ const styles = {
   },
   colors: {
     height: "90%",
+    overflow: "hidden",
   },
 };
 
