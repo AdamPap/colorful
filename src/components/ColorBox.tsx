@@ -34,6 +34,9 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
     boxContent,
     copyOverlay,
     copyOverlayShow,
+    copyMessage,
+    showMessage,
+    copyText,
   } = useStyles();
 
   const changeCopyState = () => {
@@ -50,6 +53,14 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
             [copyOverlayShow]: copied,
           })}
         />
+        <div
+          className={classNames(copyMessage, {
+            [showMessage]: copied,
+          })}
+        >
+          <h1>copied!</h1>
+          <p className={copyText}>{background}</p>
+        </div>
         <div className={copyContainer}>
           <div className={boxContent}>
             <span className={colorName}>{name}</span>
