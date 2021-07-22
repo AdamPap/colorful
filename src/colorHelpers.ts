@@ -1,33 +1,6 @@
 import chroma from "chroma-js";
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-interface Color {
-  name: string;
-  color: string;
-}
-
-interface Palette {
-  paletteName: string;
-  id: string;
-  emoji: string;
-  colors: Color[];
-}
-
-interface NewColor {
-  name: string;
-  id: string;
-  hex: string;
-  rgb: string;
-  rgba: string;
-}
-
-interface NewPalette {
-  paletteName: string;
-  id: string;
-  emoji: string;
-  colors: { [key: number]: NewColor[] };
-}
-
 function generatePalette(starterPalette: Palette) {
   let newPalette: NewPalette = {
     paletteName: starterPalette.paletteName,

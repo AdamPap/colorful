@@ -4,11 +4,6 @@ import classNames from "classnames";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import colorBoxStyles from "../styles/ColorBoxStyles";
 
-interface ColorBoxProps {
-  background: string;
-  name: string;
-}
-
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 

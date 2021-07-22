@@ -3,18 +3,6 @@ import styles from "../styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Header from "./Header";
 
-interface Color {
-  name: string;
-  color: string;
-}
-
-interface Palette {
-  paletteName: string;
-  id: string;
-  emoji: string;
-  colors: Color[];
-}
-
 // This would be needed if the props where passed:
 // palette = {palettes[4]}
 // interface PaletteProps {
