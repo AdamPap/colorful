@@ -1,6 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/PaletteStyles";
 import ColorBox from "./ColorBox";
+import Header from "./Header";
 
 interface Color {
   name: string;
@@ -27,7 +28,7 @@ const Palette = (palette: Palette) => {
   const classes = useStyles();
   return (
     <div className={classes.palette}>
-      {/* NAV */}
+      <Header />
       <div className={classes.colors}>
         {palette.colors.map((color) => {
           return (
