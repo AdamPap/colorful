@@ -12,18 +12,18 @@ import Header from "./Header";
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(styles));
 
-const Palette = (palette: Palette) => {
+const Palette = (palette: NewPalette) => {
   const classes = useStyles();
   return (
     <div className={classes.palette}>
       <Header />
       <div className={classes.colors}>
-        {palette.colors.map((color) => {
+        {palette.colors[500].map((color: NewColor) => {
           return (
             <ColorBox
               name={color.name}
-              key={Math.random() * 1000}
-              background={color.color}
+              key={color.name}
+              background={color.hex}
             />
           );
         })}
