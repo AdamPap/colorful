@@ -29,3 +29,12 @@ interface ColorBoxProps {
   background: string;
   name: string;
 }
+
+interface ColorShadesChildren {
+  children: ReactNode;
+}
+
+interface ColorShadesContextState {
+  level: number;
+  changeLevel: (newLevel: number) => number;
+}

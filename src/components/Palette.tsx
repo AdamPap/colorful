@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { ColorShadesContext } from "../contexts/ColorShadesContext";
 import styles from "../styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Header from "./Header";
@@ -13,12 +15,14 @@ import Header from "./Header";
 const useStyles = makeStyles(() => createStyles(styles));
 
 const Palette = (palette: NewPalette) => {
+  const { level } = useContext(ColorShadesContext);
   const classes = useStyles();
+
   return (
     <div className={classes.palette}>
       <Header />
       <div className={classes.colors}>
-        {palette.colors[500].map((color: NewColor) => {
+        {palette.colors[level].map((color: NewColor) => {
           return (
             <ColorBox
               name={color.name}

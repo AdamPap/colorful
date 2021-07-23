@@ -1,3 +1,5 @@
+import { ChangeEvent, useContext, useState } from "react";
+import { ColorShadesContext } from "../contexts/ColorShadesContext";
 import {
   Typography,
   Slider,
@@ -10,7 +12,16 @@ import headerStyles from "../styles/HeaderStyles";
 const useStyles = makeStyles(() => createStyles(headerStyles));
 
 const Header = () => {
+  const [value, setValue] = useState(500);
+  const { level, changeLevel } = useContext(ColorShadesContext);
   const { logo, header, slider, sliderContainer } = useStyles();
+
+  // TODO: find better solutin for any
+  const handleChange = (evt: ChangeEvent<{}>, newValue: any): void => {
+    console.log(newValue);
+    setValue(newValue);
+    changeLevel(newValue);
+  };
 
   return (
     <div className={header}>
@@ -18,15 +29,17 @@ const Header = () => {
       <div className={sliderContainer}>
         <Typography>Select color shade</Typography>
         <Slider
+          value={value}
           className={slider}
-          defaultValue={0.00000005}
+          defaultValue={level}
           // getAriaValueText={valuetext}
           aria-labelledby="discrete-slider-small-steps"
-          step={0.00000001}
+          step={100}
           marks
-          min={-0.00000005}
-          max={0.0000001}
+          min={100}
+          max={900}
           valueLabelDisplay="auto"
+          onChangeCommitted={handleChange}
         />
       </div>
     </div>
