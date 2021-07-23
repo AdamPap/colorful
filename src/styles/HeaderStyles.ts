@@ -10,6 +10,7 @@ const headerStyles = {
     marginLeft: "50px",
     display: "flex",
     alignItems: "center",
+    padding: "5px 25px",
     width: "100%",
   },
   slider: {

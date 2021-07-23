@@ -7,6 +7,7 @@ import {
   createStyles,
 } from "@material-ui/core";
 import headerStyles from "../styles/HeaderStyles";
+import SelectFormat from "./SelectFormat";
 
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(headerStyles));
@@ -18,31 +19,33 @@ const Header = () => {
 
   // TODO: find better solutin for any
   const handleChange = (evt: ChangeEvent<{}>, newValue: any): void => {
-    console.log(newValue);
     setValue(newValue);
     changeLevel(newValue);
   };
 
   return (
-    <div className={header}>
+    <header className={header}>
       <h1 className={logo}>Colorful</h1>
       <div className={sliderContainer}>
-        <Typography>Select color shade</Typography>
-        <Slider
-          value={value}
-          className={slider}
-          defaultValue={level}
-          // getAriaValueText={valuetext}
-          aria-labelledby="discrete-slider-small-steps"
-          step={100}
-          marks
-          min={100}
-          max={900}
-          valueLabelDisplay="auto"
-          onChangeCommitted={handleChange}
-        />
+        <div className={sliderContainer}>
+          <Typography>Select color shade</Typography>
+          <Slider
+            value={value}
+            className={slider}
+            defaultValue={level}
+            // getAriaValueText={valuetext}
+            aria-labelledby="discrete-slider-small-steps"
+            step={100}
+            marks
+            min={100}
+            max={900}
+            valueLabelDisplay="auto"
+            onChangeCommitted={handleChange}
+          />
+        </div>
+        <SelectFormat />
       </div>
-    </div>
+    </header>
   );
 };
 
