@@ -11,10 +11,10 @@ const useStyles = makeStyles(() => createStyles(selectFormatStyles));
 
 const SelectFormat = () => {
   const [value, setValue] = useState("hex");
-  const { format, changeFormat } = useContext(ColorFormatContext);
+  const { changeFormat } = useContext(ColorFormatContext);
   const { selectFormat } = useStyles();
 
-  const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
     setValue(event.target.value as string);
     changeFormat(event.target.value as string);
   };

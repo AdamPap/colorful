@@ -13,9 +13,7 @@ interface Palette {
 interface NewColor {
   name: string;
   id: string;
-  hex: string;
-  rgb: string;
-  rgba: string;
+  [key: string]: string;
 }
 
 interface NewPalette {

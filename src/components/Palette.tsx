@@ -4,6 +4,7 @@ import { ColorShadesContext } from "../contexts/ColorShadesContext";
 import styles from "../styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Header from "./Header";
+import { ColorFormatContext } from "../contexts/ColorFormatContext";
 
 // This would be needed if the props where passed:
 // palette = {palettes[4]}
@@ -16,6 +17,7 @@ const useStyles = makeStyles(() => createStyles(styles));
 
 const Palette = (palette: NewPalette) => {
   const { level } = useContext(ColorShadesContext);
+  const { format } = useContext(ColorFormatContext);
   const classes = useStyles();
 
   return (
@@ -27,7 +29,7 @@ const Palette = (palette: NewPalette) => {
             <ColorBox
               name={color.name}
               key={color.name}
-              background={color.hex}
+              background={color[format]}
             />
           );
         })}
