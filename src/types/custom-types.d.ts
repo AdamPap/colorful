@@ -38,3 +38,12 @@ interface ColorShadesContextState {
   level: number;
   changeLevel: (newLevel: number) => number;
 }
+
+interface ColorFormatChildren {
+  children: ReactNode;
+}
+
+interface ColorFormatContextState {
+  format: string;
+  changeFormat: (newFormat: string) => string;
+}

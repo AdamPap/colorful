@@ -1,20 +1,22 @@
-import { useState, ChangeEvent } from "react";
+import { useState, useContext, ChangeEvent } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import selectFormatStyles from "../styles/SelectFormatStyles";
+import { ColorFormatContext } from "../contexts/ColorFormatContext";
 
 const useStyles = makeStyles(() => createStyles(selectFormatStyles));
 
 const SelectFormat = () => {
-  const [format, setFormat] = useState("");
+  const [value, setValue] = useState("hex");
+  const { format, changeFormat } = useContext(ColorFormatContext);
   const { selectFormat } = useStyles();
 
   const handleChange = (event: ChangeEvent<{ value: unknown }>) => {
-    setFormat(event.target.value as string);
+    setValue(event.target.value as string);
+    changeFormat(event.target.value as string);
   };
 
   return (
@@ -22,12 +24,12 @@ const SelectFormat = () => {
       <Select
         labelId="demo-simple-select-helper-label"
         id="demo-simple-select-helper"
-        value={format}
+        value={value}
         onChange={handleChange}
       >
-        <MenuItem value="hex">HEX - </MenuItem>
-        <MenuItem value="rgb">RGB - </MenuItem>
-        <MenuItem value="rgba">RGBA - </MenuItem>
+        <MenuItem value="hex">HEX - #ffffff</MenuItem>
+        <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
+        <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
       </Select>
       <FormHelperText>Select Color Format</FormHelperText>
     </FormControl>

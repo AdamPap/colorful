@@ -4,13 +4,13 @@ const headerStyles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    height: "10%",
+    height: "12%",
   },
   sliderContainer: {
     marginLeft: "50px",
     display: "flex",
     alignItems: "center",
-    padding: "5px 25px",
+    padding: "5px 25px 0 25px",
     width: "100%",
   },
   slider: {

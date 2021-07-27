@@ -1,6 +1,6 @@
 const selectFormatStyles = {
   selectFormat: {
-    width: "30%",
+    width: "50%",
   },
 };
 
