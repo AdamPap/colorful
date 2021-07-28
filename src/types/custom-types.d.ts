@@ -45,3 +45,7 @@ interface ColorFormatContextState {
   format: string;
   changeFormat: (newFormat: string) => string;
 }
+
+interface SnackbarState {
+  open: boolean;
+}

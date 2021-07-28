@@ -1,4 +1,10 @@
-import { useState, useContext, ChangeEvent } from "react";
+import React, {
+  useState,
+  useContext,
+  ChangeEvent,
+  SyntheticEvent,
+  MouseEvent,
+} from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -9,14 +15,20 @@ import { ColorFormatContext } from "../contexts/ColorFormatContext";
 
 const useStyles = makeStyles(() => createStyles(selectFormatStyles));
 
-const SelectFormat = () => {
+interface SelectFormatProps {
+  showSnackbar: () => void;
+}
+
+const SelectFormat = ({ showSnackbar }: SelectFormatProps) => {
   const [value, setValue] = useState("hex");
   const { changeFormat } = useContext(ColorFormatContext);
   const { selectFormat } = useStyles();
 
+  // TODO: look for better solution
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
     setValue(event.target.value as string);
     changeFormat(event.target.value as string);
+    showSnackbar();
   };
 
   return (
