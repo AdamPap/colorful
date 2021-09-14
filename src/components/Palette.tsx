@@ -34,7 +34,10 @@ const Palette = (palette: NewPalette) => {
           );
         })}
       </div>
-      {/* FOOTER */}
+      <footer className={classes.footer}>
+        {palette.paletteName}
+        <span className={classes.emoji}>{palette.emoji}</span>
+      </footer>
     </div>
   );
 };
