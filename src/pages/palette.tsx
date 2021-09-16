@@ -5,6 +5,10 @@ import ColorShadesProvider from "../contexts/ColorShadesContext";
 import palettes from "../seedColors";
 
 const palette = () => {
+  // const findPalette  = (id: string) => {
+  //   palettes.find( (palette) => palette.id === id)
+  // }
+
   return (
     <div>
       <ColorShadesProvider>
