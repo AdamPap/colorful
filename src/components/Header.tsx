@@ -1,4 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useContext, useState } from "react";
+import Link from "next/link";
 import { ColorShadesContext } from "../contexts/ColorShadesContext";
 import {
   Typography,
@@ -40,7 +41,9 @@ const Header = () => {
 
   return (
     <header className={header}>
-      <h1 className={logo}>Colorful</h1>
+      <h1 className={logo}>
+        <Link href={"/"}>Colorful</Link>
+      </h1>
       <div className={sliderContainer}>
         <div className={sliderContainer}>
           <Typography>Select color shade</Typography>

@@ -1,7 +1,10 @@
+import PaletteList from "../components/PaletteList";
+import palettes from "../seedColors";
+
 export default function Home() {
   return (
     <div>
-      <h1>HOME PAGE</h1>
+      <PaletteList palettes={palettes} />
     </div>
   );
 }

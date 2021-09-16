@@ -10,6 +10,10 @@ interface Palette {
   colors: Color[];
 }
 
+interface PaletteList {
+  palettes: Palette[];
+}
+
 interface NewColor {
   name: string;
   id: string;
