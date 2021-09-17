@@ -3,9 +3,7 @@ import palettes from "../seedColors";
 
 const styles = {
   width: "80%",
-  maxWidth: "1200px",
-  display: "flex",
-  justifyContent: "center",
+  maxWidth: "1000px",
   margin: "0 auto",
 };
 

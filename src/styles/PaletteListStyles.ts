@@ -1,12 +1,14 @@
 const styles = {
+  // PaletteList: {
+  //   display: "flex",
+  //   flexWrap: "wrap" as "wrap",
+  //   justifyContent: "space-around",
+  //   alignItems: "flex-start",
+  // },
   PaletteList: {
-    minHeight: "100vh",
-    height: "auto",
-    width: "100%",
-    display: "flex",
-    flexWrap: "wrap" as "wrap",
-    justifyContent: "space-around",
-    alignItems: "flex-start",
+    display: "grid",
+    gridTemplateColumns: "auto auto auto",
+    gridGap: "20px",
   },
 };
 

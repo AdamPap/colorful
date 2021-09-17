@@ -1,23 +1,22 @@
 const styles = {
   colorContainer: {
     width: "100%",
-    height: "100%",
     display: "flex",
     flexWrap: "wrap" as "wrap",
+    borderRadius: "6px",
+    overflow: "hidden",
+    background: "white",
   },
   color: {
     minHeight: "40px",
     width: "20%",
     height: "25%",
   },
-  miniPaletteWrapper: {
-    width: "30%",
-    minHeight: "20%",
-    // height: "20%",
-    margin: "30px 0",
-    border: "1px solid #e6e6e6",
+  root: {
+    border: "1px solid #f6f6f6",
     borderRadius: "8px",
     overflow: "hidden",
+    padding: "6px 6px 0 6px",
   },
   footer: {
     display: "flex",

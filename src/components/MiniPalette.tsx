@@ -15,7 +15,7 @@ const MiniPalette = (palette: Palette) => {
   ));
 
   return (
-    <div className={classes.miniPaletteWrapper}>
+    <div className={classes.root}>
       <Link passHref href={`/palettes/${palette.id}`} key={palette.id}>
         <a>
           <div className={classes.colorContainer}>{colors}</div>
