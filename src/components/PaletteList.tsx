@@ -1,18 +1,17 @@
-import Link from "next/link";
+import { makeStyles, createStyles } from "@material-ui/core";
+import MiniPalette from "./MiniPalette";
+import styles from "../styles/PaletteListStyles";
+
+const useStyles = makeStyles(() => createStyles(styles));
 
 const PaletteList = ({ palettes }: PaletteList) => {
-  console.log(palettes);
+  const classes = useStyles();
+
   const palettesNames = palettes.map((palette) => {
-    return (
-      <p key={palette.id}>
-        <Link href={`/palettes/${palette.id}`} key={palette.id}>
-          {palette.paletteName}
-        </Link>
-      </p>
-    );
+    return <MiniPalette key={palette.id} {...palette} />;
   });
 
-  return <ul>{palettesNames}</ul>;
+  return <div className={classes.PaletteList}>{palettesNames}</div>;
 };
 
 export default PaletteList;
