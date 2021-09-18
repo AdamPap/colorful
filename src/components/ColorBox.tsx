@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import classNames from "classnames";
 import { createStyles, makeStyles } from "@material-ui/styles";
@@ -62,7 +63,11 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
           </div>
           <button className={copyButton}>Copy</button>
         </div>
-        <span className={more}>More</span>
+        <Link passHref href="/">
+          <span onClick={(e) => e.stopPropagation()} className={more}>
+            More
+          </span>
+        </Link>
       </div>
     </CopyToClipboard>
   );

@@ -17,6 +17,7 @@ const styles = {
     borderRadius: "8px",
     overflow: "hidden",
     padding: "6px 6px 0 6px",
+    boxShadow: "1px 1px 10px 2px rgba(0,0,0,0.05)",
   },
   footer: {
     display: "flex",

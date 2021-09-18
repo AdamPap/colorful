@@ -38,7 +38,9 @@ const colorBoxStyles = {
     right: "0",
     padding: "5px 10px",
   },
-  colorName: {},
+  colorName: {
+    // overflow: "hidden",
+  },
   copyOverlay: {
     opacity: "0",
     position: "absolute",
