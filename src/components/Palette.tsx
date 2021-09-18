@@ -29,6 +29,8 @@ const Palette = (palette: NewPalette) => {
             <ColorBox
               name={color.name}
               key={color.name}
+              colorId={color.id}
+              paletteId={palette.id}
               background={color[format]}
             />
           );

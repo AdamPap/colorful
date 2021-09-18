@@ -30,6 +30,8 @@ interface NewPalette {
 interface ColorBoxProps {
   background: string;
   name: string;
+  colorId: string;
+  paletteId: string;
 }
 
 interface ColorShadesChildren {

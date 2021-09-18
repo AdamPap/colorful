@@ -8,7 +8,7 @@ import colorBoxStyles from "../styles/ColorBoxStyles";
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 
-const ColorBox = ({ background, name }: ColorBoxProps) => {
+const ColorBox = ({ background, name, paletteId }: ColorBoxProps) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (copied) {
@@ -20,6 +20,8 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
       };
     }
   }, [copied]);
+
+  const colorId = name.replace(/\s/g, "-");
 
   const {
     colorBox,
@@ -63,7 +65,7 @@ const ColorBox = ({ background, name }: ColorBoxProps) => {
           </div>
           <button className={copyButton}>Copy</button>
         </div>
-        <Link passHref href="/">
+        <Link passHref href={`/palettes/${paletteId}/${colorId}`}>
           <span onClick={(e) => e.stopPropagation()} className={more}>
             More
           </span>
