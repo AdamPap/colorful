@@ -30,7 +30,7 @@ interface NewPalette {
 interface ColorBoxProps {
   background: string;
   name: string;
-  colorId: string;
+  color: NewColor;
   paletteId: string;
 }
 
@@ -50,6 +50,15 @@ interface ColorFormatChildren {
 interface ColorFormatContextState {
   format: string;
   changeFormat: (newFormat: string) => string;
+}
+
+interface PaletteContextState {
+  palettes: Palette[];
+  changePalettes: (newPalettes: Palettes[]) => void;
+}
+
+interface ProviderChildren {
+  children: ReactNode;
 }
 
 interface SnackbarState {

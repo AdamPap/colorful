@@ -29,7 +29,7 @@ const Palette = (palette: NewPalette) => {
             <ColorBox
               name={color.name}
               key={color.name}
-              colorId={color.id}
+              color={color}
               paletteId={palette.id}
               background={color[format]}
             />

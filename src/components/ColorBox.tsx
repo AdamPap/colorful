@@ -8,7 +8,7 @@ import colorBoxStyles from "../styles/ColorBoxStyles";
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 
-const ColorBox = ({ background, name, paletteId }: ColorBoxProps) => {
+const ColorBox = ({ background, name, color, paletteId }: ColorBoxProps) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (copied) {

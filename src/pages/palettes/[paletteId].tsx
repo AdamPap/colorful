@@ -26,7 +26,6 @@ const PaletteShow = () => {
   const findPalette = (paletteId: string): Palette => {
     const lookup: Palette = palettes
       .filter((palette) => {
-        console.log(palette.id === paletteId);
         return palette.id === paletteId;
       })
       .pop()!;
