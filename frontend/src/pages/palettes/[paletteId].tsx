@@ -1,7 +1,5 @@
-import { GetStaticProps, GetStaticPaths } from "next";
-import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
-import { generatePalette } from "../../colorHelpers";
+import { generatePalette, findPalette } from "../../colorHelpers";
 import Palette from "../../components/Palette";
 import ColorFormatProvider from "../../contexts/ColorFormatContext";
 import ColorShadesProvider from "../../contexts/ColorShadesContext";
@@ -23,21 +21,11 @@ const PaletteShow = () => {
     setPaletteId(id);
   }, [router.isReady, router.query]);
 
-  const findPalette = (paletteId: string): Palette => {
-    const lookup: Palette = palettes
-      .filter((palette) => {
-        return palette.id === paletteId;
-      })
-      .pop()!;
-
-    return lookup;
-  };
-
   return (
     <div>
       <ColorShadesProvider>
         <ColorFormatProvider>
-          <Palette {...generatePalette(findPalette(paletteId))} />
+          <Palette {...generatePalette(findPalette(paletteId, palettes))} />
         </ColorFormatProvider>
       </ColorShadesProvider>
     </div>

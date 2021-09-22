@@ -41,4 +41,14 @@ function getScale(hexColor: string, numberOfColors: number) {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors);
 }
 
-export { generatePalette, getScale };
+const findPalette = (paletteId: string, palettes: Palette[]): Palette => {
+  const lookup: Palette = palettes
+    .filter((palette) => {
+      return palette.id === paletteId;
+    })
+    .pop()!;
+
+  return lookup;
+};
+
+export { generatePalette, getScale, findPalette };

@@ -61,6 +61,6 @@ interface ProviderChildren {
   children: ReactNode;
 }
 
-interface SnackbarState {
-  open: boolean;
-}
+// interface SnackbarState {
+//   open: boolean;
+// }
