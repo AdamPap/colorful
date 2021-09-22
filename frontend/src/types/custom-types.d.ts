@@ -62,6 +62,10 @@ interface ProviderChildren {
   children: ReactNode;
 }
 
+interface HeaderProps {
+  isAllColorsPalette: boolean;
+}
+
 // interface SnackbarState {
 //   open: boolean;
 // }

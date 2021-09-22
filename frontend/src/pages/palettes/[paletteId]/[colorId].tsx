@@ -53,8 +53,9 @@ const ColorShow: FC = ({
   };
 
   return (
+    // TODO: refactor the outside divs here and in Palette
     <div style={{ height: "100vh" }}>
-      <Header />
+      <Header isAllColorsPalette={false} />
       <div style={{ height: "90%" }}>
         {shades.map((shade) => (
           <ColorBox

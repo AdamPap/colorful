@@ -18,7 +18,7 @@ import { ColorFormatContext } from "../contexts/ColorFormatContext";
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(headerStyles));
 
-const Header = () => {
+const Header = ({ isAllColorsPalette }: HeaderProps) => {
   const [value, setValue] = useState(500);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const { level, changeLevel } = useContext(ColorShadesContext);
@@ -45,24 +45,27 @@ const Header = () => {
         <Link href={"/"}>Colorful</Link>
       </h1>
       <div className={sliderContainer}>
-        <div className={sliderContainer}>
-          <Typography>Select color shade</Typography>
-          <Slider
-            value={value}
-            className={slider}
-            defaultValue={level}
-            // getAriaValueText={valuetext}
-            aria-labelledby="discrete-slider-small-steps"
-            step={100}
-            marks
-            min={100}
-            max={900}
-            valueLabelDisplay="auto"
-            onChangeCommitted={handleChange}
-          />
-        </div>
+        {isAllColorsPalette && (
+          <div className={sliderContainer}>
+            <Typography>Select color shade</Typography>
+            <Slider
+              value={value}
+              className={slider}
+              defaultValue={level}
+              // getAriaValueText={valuetext}
+              aria-labelledby="discrete-slider-small-steps"
+              step={100}
+              marks
+              min={100}
+              max={900}
+              valueLabelDisplay="auto"
+              onChangeCommitted={handleChange}
+            />
+          </div>
+        )}
         <SelectFormat showSnackbar={showSnackbar} />
       </div>
+      {/* TODO: fix other than hex in snackbar */}
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={isSnackbarOpen}

@@ -23,7 +23,7 @@ const Palette = (palette: NewPalette) => {
 
   return (
     <div className={classes.palette}>
-      <Header />
+      <Header isAllColorsPalette={true} />
       <div className={classes.colors}>
         {palette.colors[level].map((color: NewColor) => {
           return (
