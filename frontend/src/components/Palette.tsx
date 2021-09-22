@@ -33,6 +33,7 @@ const Palette = (palette: NewPalette) => {
               color={color}
               paletteId={palette.id}
               background={color[format]}
+              showingFullPalette={true}
             />
           );
         })}

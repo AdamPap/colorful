@@ -5,6 +5,7 @@ import { generatePalette, findPalette } from "../../../colorHelpers";
 import { useRouter } from "next/router";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import ColorBox from "../../../components/ColorBox";
 
 const ColorShow: FC = ({
   colorId,
@@ -52,18 +53,20 @@ const ColorShow: FC = ({
   };
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <Header />
-      {shades.map((shade) => (
-        <li
-          style={{
-            height: "100px",
-            width: "100px",
-            background: `${shade.hex}`,
-          }}
-          key={shade.name}
-        ></li>
-      ))}
+      <div style={{ height: "90%" }}>
+        {shades.map((shade) => (
+          <ColorBox
+            name={shade.name}
+            key={shade.name}
+            color={shade}
+            paletteId={palette.id}
+            background={shade.hex}
+            showingFullPalette={false}
+          />
+        ))}
+      </div>
       <Footer {...palette} />
     </div>
   );

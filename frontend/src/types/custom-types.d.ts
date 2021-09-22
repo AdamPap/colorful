@@ -32,6 +32,7 @@ interface ColorBoxProps {
   name: string;
   color: NewColor;
   paletteId: string;
+  showingFullPalette: boolean;
 }
 
 interface ColorShadesChildren {

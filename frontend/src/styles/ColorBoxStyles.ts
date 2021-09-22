@@ -1,7 +1,11 @@
+interface heightProps {
+  showingFullPalette: boolean;
+}
+
 const colorBoxStyles = {
   colorBox: {
     width: "20%",
-    height: "25%",
+    height: (props: heightProps) => (props.showingFullPalette ? "25%" : "50%"),
     margin: "0 auto",
     display: "inline-block",
     position: "relative",

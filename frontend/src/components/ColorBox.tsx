@@ -8,7 +8,13 @@ import colorBoxStyles from "../styles/ColorBoxStyles";
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
 
-const ColorBox = ({ background, name, color, paletteId }: ColorBoxProps) => {
+const ColorBox = ({
+  background,
+  name,
+  color,
+  paletteId,
+  showingFullPalette,
+}: ColorBoxProps) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (copied) {
@@ -35,7 +41,7 @@ const ColorBox = ({ background, name, color, paletteId }: ColorBoxProps) => {
     copyMessage,
     showMessage,
     copyText,
-  } = useStyles();
+  } = useStyles({ showingFullPalette });
 
   const changeCopyState = () => {
     console.log("COPIED");
@@ -65,11 +71,13 @@ const ColorBox = ({ background, name, color, paletteId }: ColorBoxProps) => {
           </div>
           <button className={copyButton}>Copy</button>
         </div>
-        <Link passHref href={`/palettes/${paletteId}/${colorId}`}>
-          <span onClick={(e) => e.stopPropagation()} className={more}>
-            More
-          </span>
-        </Link>
+        {showingFullPalette && (
+          <Link passHref href={`/palettes/${paletteId}/${colorId}`}>
+            <span onClick={(e) => e.stopPropagation()} className={more}>
+              More
+            </span>
+          </Link>
+        )}
       </div>
     </CopyToClipboard>
   );
