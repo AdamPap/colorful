@@ -65,7 +65,6 @@ const Header = ({ isAllColorsPalette }: HeaderProps) => {
         )}
         <SelectFormat showSnackbar={showSnackbar} />
       </div>
-      {/* TODO: fix other than hex in snackbar */}
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={isSnackbarOpen}

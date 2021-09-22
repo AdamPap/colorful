@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import ColorBox from "../../../components/ColorBox";
+import { ColorFormatContext } from "../../../contexts/ColorFormatContext";
 
 const ColorShow: FC = ({
   colorId,
@@ -19,6 +20,7 @@ const ColorShow: FC = ({
   const [shades, setShades] = useState([] as NewColor[]);
 
   const { palettes } = useContext(PaletteContext);
+  const { format } = useContext(ColorFormatContext);
 
   useEffect(() => {
     if (router && router.query) {
@@ -63,7 +65,7 @@ const ColorShow: FC = ({
             key={shade.name}
             color={shade}
             paletteId={palette.id}
-            background={shade.hex}
+            background={shade[format]}
             showingFullPalette={false}
           />
         ))}

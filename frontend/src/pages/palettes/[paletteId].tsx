@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { generatePalette, findPalette } from "../../colorHelpers";
 import Palette from "../../components/Palette";
-import ColorFormatProvider from "../../contexts/ColorFormatContext";
-import ColorShadesProvider from "../../contexts/ColorShadesContext";
 import palettes from "../../seedColors";
 import { useEffect, useState } from "react";
 
@@ -21,15 +19,7 @@ const PaletteShow = () => {
     setPaletteId(id);
   }, [router.isReady, router.query]);
 
-  return (
-    <div>
-      <ColorShadesProvider>
-        <ColorFormatProvider>
-          <Palette {...generatePalette(findPalette(paletteId, palettes))} />
-        </ColorFormatProvider>
-      </ColorShadesProvider>
-    </div>
-  );
+  return <Palette {...generatePalette(findPalette(paletteId, palettes))} />;
 };
 
 // export const getStaticProps: GetStaticProps = async (context) => {
