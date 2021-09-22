@@ -5,6 +5,7 @@ import styles from "../styles/PaletteStyles";
 import ColorBox from "./ColorBox";
 import Header from "./Header";
 import { ColorFormatContext } from "../contexts/ColorFormatContext";
+import Footer from "./Footer";
 
 // This would be needed if the props where passed:
 // palette = {palettes[4]}
@@ -36,10 +37,7 @@ const Palette = (palette: NewPalette) => {
           );
         })}
       </div>
-      <footer className={classes.footer}>
-        {palette.paletteName}
-        <span className={classes.emoji}>{palette.emoji}</span>
-      </footer>
+      <Footer {...palette} />
     </div>
   );
 };

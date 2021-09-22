@@ -3,6 +3,8 @@ import { FC, useContext, useEffect, useState } from "react";
 import { PaletteContext } from "../../../contexts/PaletteContext";
 import { generatePalette, findPalette } from "../../../colorHelpers";
 import { useRouter } from "next/router";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 
 const ColorShow: FC = ({
   colorId,
@@ -46,14 +48,12 @@ const ColorShow: FC = ({
         )
       );
     }
-    return shades;
+    return shades.slice(1);
   };
 
   return (
     <div>
-      <h1>
-        Single color page {colorId} of {paletteId}
-      </h1>
+      <Header />
       {shades.map((shade) => (
         <li
           style={{
@@ -64,6 +64,7 @@ const ColorShow: FC = ({
           key={shade.name}
         ></li>
       ))}
+      <Footer {...palette} />
     </div>
   );
 };
