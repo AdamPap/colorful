@@ -43,7 +43,9 @@ const colorBoxStyles = {
     padding: "5px 10px",
   },
   colorName: {
-    // overflow: "hidden",
+    fontWeight: "400",
+    fontSize: "0.8rem",
+    letterSpacing: "0.06rem",
   },
   copyOverlay: {
     opacity: "0",

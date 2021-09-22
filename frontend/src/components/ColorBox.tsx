@@ -67,7 +67,7 @@ const ColorBox = ({
         </div>
         <div className={copyContainer}>
           <div className={boxContent}>
-            <span className={colorName}>{name}</span>
+            <span className={colorName}>{name.toUpperCase()}</span>
           </div>
           <button className={copyButton}>Copy</button>
         </div>

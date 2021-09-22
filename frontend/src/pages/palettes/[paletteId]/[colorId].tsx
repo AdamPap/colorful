@@ -1,4 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import Link from "next/link";
 import { FC, useContext, useEffect, useState } from "react";
 import { PaletteContext } from "../../../contexts/PaletteContext";
 import { generatePalette, findPalette } from "../../../colorHelpers";
@@ -7,6 +8,13 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import ColorBox from "../../../components/ColorBox";
 import { ColorFormatContext } from "../../../contexts/ColorFormatContext";
+
+const styles = {
+  height: "50%",
+  width: "20%",
+  display: "inline-block",
+  color: "black",
+};
 
 const ColorShow: FC = ({
   colorId,
@@ -58,7 +66,7 @@ const ColorShow: FC = ({
     // TODO: refactor the outside divs here and in Palette
     <div style={{ height: "100vh" }}>
       <Header isAllColorsPalette={false} />
-      <div style={{ height: "90%" }}>
+      <div style={{ height: "90%", overflow: "hidden" }}>
         {shades.map((shade) => (
           <ColorBox
             name={shade.name}
@@ -69,6 +77,11 @@ const ColorShow: FC = ({
             showingFullPalette={false}
           />
         ))}
+        <div style={styles}>
+          <Link href={`/palettes/${palette.id}`}>
+            <a>GO BACK</a>
+          </Link>
+        </div>
       </div>
       <Footer {...palette} />
     </div>
