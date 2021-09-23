@@ -8,19 +8,18 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import ColorBox from "../../../components/ColorBox";
 import { ColorFormatContext } from "../../../contexts/ColorFormatContext";
+import { makeStyles, createStyles } from "@material-ui/core";
+import styles from "../../../styles/ColorShowStyles";
 
-const styles = {
-  height: "50%",
-  width: "20%",
-  display: "inline-block",
-  color: "black",
-};
+// @ts-ignore
+const useStyles = makeStyles(() => createStyles(styles));
 
 const ColorShow: FC = ({
   colorId,
   paletteId,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
+  const classes = useStyles();
 
   const [palette, setPalette] = useState({} as NewPalette);
   const [statePaletteId, setStatePaletteId] = useState("");
@@ -66,7 +65,12 @@ const ColorShow: FC = ({
     // TODO: refactor the outside divs here and in Palette
     <div style={{ height: "100vh" }}>
       <Header isAllColorsPalette={false} />
-      <div style={{ height: "90%", overflow: "hidden" }}>
+      <div
+        style={{
+          height: "90%",
+          // overflow: "hidden",
+        }}
+      >
         {shades.map((shade) => (
           <ColorBox
             name={shade.name}
@@ -77,9 +81,9 @@ const ColorShow: FC = ({
             showingFullPalette={false}
           />
         ))}
-        <div style={styles}>
+        <div className={classes.goBack}>
           <Link href={`/palettes/${palette.id}`}>
-            <a>GO BACK</a>
+            <a className={classes.link}>GO BACK</a>
           </Link>
         </div>
       </div>
