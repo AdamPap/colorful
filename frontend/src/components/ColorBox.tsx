@@ -4,6 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import classNames from "classnames";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import colorBoxStyles from "../styles/ColorBoxStyles";
+import chroma from "chroma-js";
 
 // @ts-ignore
 const useStyles = makeStyles(() => createStyles(colorBoxStyles));
@@ -16,6 +17,10 @@ const ColorBox = ({
   showingFullPalette,
 }: ColorBoxProps) => {
   const [copied, setCopied] = useState(false);
+
+  const isDarkColor = chroma(background).luminance() <= 0.08;
+  const isLightColor = chroma(background).luminance() >= 0.5;
+
   useEffect(() => {
     if (copied) {
       let copyTimer = setTimeout(() => {
@@ -33,6 +38,8 @@ const ColorBox = ({
     colorBox,
     copyButton,
     copyContainer,
+    lightText,
+    darkText,
     colorName,
     more,
     boxContent,
@@ -67,13 +74,24 @@ const ColorBox = ({
         </div>
         <div className={copyContainer}>
           <div className={boxContent}>
-            <span className={colorName}>{name.toUpperCase()}</span>
+            <span
+              className={classNames(colorName, {
+                [lightText]: isDarkColor,
+              })}
+            >
+              {name.toUpperCase()}
+            </span>
           </div>
           <button className={copyButton}>Copy</button>
         </div>
         {showingFullPalette && (
           <Link passHref href={`/palettes/${paletteId}/${colorId}`}>
-            <span onClick={(e) => e.stopPropagation()} className={more}>
+            <span
+              onClick={(e) => e.stopPropagation()}
+              className={classNames(more, {
+                [darkText]: isLightColor,
+              })}
+            >
               More
             </span>
           </Link>

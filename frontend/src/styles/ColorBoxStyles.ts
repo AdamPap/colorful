@@ -20,6 +20,12 @@ const colorBoxStyles = {
     bottom: "5px",
     left: "5px",
   },
+  lightText: {
+    color: "white",
+  },
+  darkText: {
+    color: "rgba(0,0,0,0.5)!important",
+  },
   copyContainer: {},
   copyButton: {
     position: "absolute",
@@ -38,9 +44,12 @@ const colorBoxStyles = {
   more: {
     position: "absolute",
     background: "rgba(255, 255, 255, 0.3)",
+    textTransform: "uppercase",
+    fontSize: "0.8rem",
     bottom: "0",
     right: "0",
     padding: "5px 10px",
+    color: "rgba(255,255,255,0.8)",
   },
   colorName: {
     fontWeight: "400",
