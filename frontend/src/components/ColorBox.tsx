@@ -51,7 +51,6 @@ const ColorBox = ({
   } = useStyles({ showingFullPalette });
 
   const changeCopyState = () => {
-    console.log("COPIED");
     setCopied(true);
   };
 
@@ -69,8 +68,10 @@ const ColorBox = ({
             [showMessage]: copied,
           })}
         >
-          <h1>copied!</h1>
-          <p className={copyText}>{background}</p>
+          <h1 className={classNames({ [copyText]: isLightColor })}>copied!</h1>
+          <p className={classNames({ [copyText]: isLightColor })}>
+            {background}
+          </p>
         </div>
         <div className={copyContainer}>
           <div className={boxContent}>

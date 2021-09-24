@@ -107,7 +107,7 @@ const colorBoxStyles = {
     transition: "all 0.4s ease-in-out",
     transitionDelay: "0.4s",
   },
-  copyText: {},
+  copyText: { color: "rgba(0,0,0,0.5)" },
 };
 
 export default colorBoxStyles;
