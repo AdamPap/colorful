@@ -32,7 +32,7 @@ export default function Home() {
     <div style={styles.root}>
       <div style={styles.header}>
         <h1 style={styles.h1}>Colorful</h1>
-        <Link href="/">
+        <Link href="/palettes/newPalette">
           <a style={styles.a}>Create Palette</a>
         </Link>
       </div>
