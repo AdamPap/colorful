@@ -30,8 +30,8 @@ interface NewPalette {
 interface ColorBoxProps {
   background: string;
   name: string;
-  color: NewColor;
-  paletteId: string;
+  color?: NewColor;
+  paletteId?: string;
   showingFullPalette: boolean;
 }
 

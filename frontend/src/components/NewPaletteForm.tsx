@@ -10,13 +10,16 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import useStyles from "../styles/NewPaletteFormStyles";
-import { ChromePicker } from "react-color";
+import { ChromePicker, ColorResult } from "react-color";
 import { Button, Divider } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
+import ColorBox from "./ColorBox";
 
 const NewPaletteForm = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [currentColor, setCurrentColor] = useState({} as ColorResult);
+  const [colors, setColors] = useState([] as string[]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -24,6 +27,16 @@ const NewPaletteForm = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleClick = () => {};
+
+  const updateCurrentColor = (newColor: ColorResult) => {
+    setCurrentColor(newColor);
+  };
+
+  const addNewColor = () => {
+    setColors([...colors, currentColor.hex]);
   };
 
   return (
@@ -78,8 +91,17 @@ const NewPaletteForm = () => {
             Random Color
           </Button>
         </div>
-        <ChromePicker color="red" onChangeComplete={(c) => console.log(c)} />
-        <Button variant="contained" color="primary" startIcon={<Add />}>
+        <ChromePicker
+          color={currentColor.hex}
+          onChangeComplete={updateCurrentColor}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: currentColor.hex }}
+          startIcon={<Add />}
+          onClick={addNewColor}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -89,6 +111,18 @@ const NewPaletteForm = () => {
         })}
       >
         <div className={classes.drawerHeader} />
+        <div style={{ height: "100vh" }}>
+          {colors.map((color) => {
+            return (
+              <ColorBox
+                key={color}
+                background={color}
+                name={color}
+                showingFullPalette={true}
+              />
+            );
+          })}
+        </div>
       </main>
     </div>
   );
