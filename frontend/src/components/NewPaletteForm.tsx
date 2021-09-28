@@ -13,12 +13,27 @@ import useStyles from "../styles/NewPaletteFormStyles";
 import { ChromePicker, ColorResult } from "react-color";
 import { Button, Divider } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
-import ColorBox from "./ColorBox";
+import DraggableColorBox from "./DraggableColorBox";
+import chroma from "chroma-js";
+
+const defaultColor = {
+  hex: "#236C7F",
+  hsl: {
+    h: 192,
+    s: 57,
+    l: 32,
+  },
+  rgb: {
+    r: 35,
+    g: 108,
+    b: 127,
+  },
+};
 
 const NewPaletteForm = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState({} as ColorResult);
+  const [currentColor, setCurrentColor] = useState(defaultColor);
   const [colors, setColors] = useState([] as string[]);
 
   const handleDrawerOpen = () => {
@@ -37,6 +52,36 @@ const NewPaletteForm = () => {
 
   const addNewColor = () => {
     setColors([...colors, currentColor.hex]);
+  };
+
+  const clearPalette = () => {
+    setColors([]);
+  };
+
+  const changeToRandomColor = () => {
+    const possibleValues = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += possibleValues[Math.floor(Math.random() * 16)];
+    }
+    // since chroma.js  is used:
+    // color = chroma.random()
+
+    const colorObject = {
+      hex: color,
+      hsl: {
+        h: chroma(color).hsl()[0],
+        s: chroma(color).hsl()[1],
+        l: chroma(color).hsl()[2],
+      },
+      rgb: {
+        r: chroma(color).rgb()[0],
+        g: chroma(color).rgb()[1],
+        b: chroma(color).rgb()[2],
+      },
+    };
+
+    setCurrentColor(colorObject);
   };
 
   return (
@@ -84,10 +129,16 @@ const NewPaletteForm = () => {
             variant="outlined"
             color="secondary"
             startIcon={<DeleteIcon />}
+            onClick={clearPalette}
           >
             Clear Palette
           </Button>
-          <Button variant="outlined" color="primary" startIcon={<Shuffle />}>
+          <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<Shuffle />}
+            onClick={changeToRandomColor}
+          >
             Random Color
           </Button>
         </div>
@@ -113,14 +164,7 @@ const NewPaletteForm = () => {
         <div className={classes.drawerHeader} />
         <div style={{ height: "100vh" }}>
           {colors.map((color) => {
-            return (
-              <ColorBox
-                key={color}
-                background={color}
-                name={color}
-                showingFullPalette={true}
-              />
-            );
+            return <DraggableColorBox key={color} color={color} />;
           })}
         </div>
       </main>
