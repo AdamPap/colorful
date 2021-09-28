@@ -7,8 +7,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
+import DeleteIcon from "@material-ui/icons/Delete";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import useStyles from "../styles/NewPaletteFormStyles";
+import { ChromePicker } from "react-color";
+import { Button, Divider } from "@material-ui/core";
+import { Add, Shuffle } from "@material-ui/icons";
 
 const NewPaletteForm = () => {
   const classes = useStyles();
@@ -60,6 +64,24 @@ const NewPaletteForm = () => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        <Divider />
+        <Typography variant="h4">Design Your Palette</Typography>
+        <div>
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<DeleteIcon />}
+          >
+            Clear Palette
+          </Button>
+          <Button variant="outlined" color="primary" startIcon={<Shuffle />}>
+            Random Color
+          </Button>
+        </div>
+        <ChromePicker color="red" onChangeComplete={(c) => console.log(c)} />
+        <Button variant="contained" color="primary" startIcon={<Add />}>
+          Add Color
+        </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
