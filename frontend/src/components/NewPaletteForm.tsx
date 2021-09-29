@@ -162,11 +162,9 @@ const NewPaletteForm = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <div style={{ height: "100vh" }}>
-          {colors.map((color) => {
-            return <DraggableColorBox key={color} color={color} />;
-          })}
-        </div>
+        {colors.map((color) => {
+          return <DraggableColorBox key={color} color={color} />;
+        })}
       </main>
     </div>
   );

@@ -1,6 +1,7 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 400;
+const appBarHeight = 64;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,6 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     appBar: {
+      // height: `${appBarHeight}px`,
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -44,7 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      height: `calc(100vh - ${appBarHeight}px)`,
+      // padding: theme.spacing(3),
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
