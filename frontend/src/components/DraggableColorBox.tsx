@@ -1,14 +1,10 @@
 import useStyles from "../styles/DraggableColorBoxStyles";
 
-interface DraggableColorBoxProps {
-  color: string;
-}
-
-const DraggableColorBox = ({ color }: DraggableColorBoxProps) => {
+const DraggableColorBox = ({ name, color }: Color) => {
   const classes = useStyles();
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>
-      {color}
+      <span className={classes.colorName}>{name}</span>
     </div>
   );
 };

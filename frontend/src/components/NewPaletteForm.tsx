@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,6 +15,7 @@ import { Button, Divider } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
 import DraggableColorBox from "./DraggableColorBox";
 import chroma from "chroma-js";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -34,7 +35,8 @@ const NewPaletteForm = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState(defaultColor);
-  const [colors, setColors] = useState([] as string[]);
+  const [colors, setColors] = useState([] as Color[]);
+  const [colorName, setColorName] = useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -44,14 +46,20 @@ const NewPaletteForm = () => {
     setOpen(false);
   };
 
-  const handleClick = () => {};
+  // const handleSubmit = () => {
+  //   console.log("submitted");
+  // };
 
   const updateCurrentColor = (newColor: ColorResult) => {
     setCurrentColor(newColor);
   };
 
   const addNewColor = () => {
-    setColors([...colors, currentColor.hex]);
+    const newColor = {
+      color: currentColor.hex,
+      name: colorName,
+    };
+    setColors([...colors, newColor]);
   };
 
   const clearPalette = () => {
@@ -82,6 +90,10 @@ const NewPaletteForm = () => {
     };
 
     setCurrentColor(colorObject);
+  };
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setColorName(evt.target.value);
   };
 
   return (
@@ -146,15 +158,22 @@ const NewPaletteForm = () => {
           color={currentColor.hex}
           onChangeComplete={updateCurrentColor}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ backgroundColor: currentColor.hex }}
-          startIcon={<Add />}
-          onClick={addNewColor}
-        >
-          Add Color
-        </Button>
+        <ValidatorForm onSubmit={addNewColor}>
+          <TextValidator
+            name="colorName"
+            value={colorName}
+            onChange={handleChange}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: currentColor.hex }}
+            startIcon={<Add />}
+            type="submit"
+          >
+            Add Color
+          </Button>
+        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -163,7 +182,13 @@ const NewPaletteForm = () => {
       >
         <div className={classes.drawerHeader} />
         {colors.map((color) => {
-          return <DraggableColorBox key={color} color={color} />;
+          return (
+            <DraggableColorBox
+              key={color.name}
+              name={color.name}
+              color={color.color}
+            />
+          );
         })}
       </main>
     </div>

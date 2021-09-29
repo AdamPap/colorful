@@ -7,8 +7,11 @@ const styles = {
     margin: "0 auto",
     display: "inline-block",
     curson: "pointer",
-    marginBottom: "0",
+    marginBottom: "-5px",
     position: "relative",
+  },
+  colorName: {
+    position: "absolute",
   },
 };
 
