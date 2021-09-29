@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -38,6 +38,19 @@ const NewPaletteForm = () => {
   const [colors, setColors] = useState([] as Color[]);
   const [colorName, setColorName] = useState("");
 
+  useEffect(() => {
+    ValidatorForm.addValidationRule("colorNameExists", (value) => {
+      if (colors.some(({ name }) => name.toLowerCase() === value.toLowerCase()))
+        return false;
+      return true;
+    });
+
+    ValidatorForm.addValidationRule("colorExists", (value) => {
+      if (colors.some(({ color }) => color === currentColor.hex)) return false;
+      return true;
+    });
+  });
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -60,6 +73,7 @@ const NewPaletteForm = () => {
       name: colorName,
     };
     setColors([...colors, newColor]);
+    setColorName("");
   };
 
   const clearPalette = () => {
@@ -163,6 +177,12 @@ const NewPaletteForm = () => {
             name="colorName"
             value={colorName}
             onChange={handleChange}
+            validators={["required", "colorNameExists", "colorExists"]}
+            errorMessages={[
+              "Color name is required",
+              "Color name already exists",
+              "Color already exists",
+            ]}
           />
           <Button
             variant="contained"
