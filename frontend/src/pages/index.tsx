@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { useContext } from "react";
 import PaletteList from "../components/PaletteList";
-import palettes from "../seedColors";
+import { PaletteContext } from "../contexts/PaletteContext";
 
 const styles = {
   root: {
@@ -28,6 +29,8 @@ const styles = {
 };
 
 export default function Home() {
+  const { palettes } = useContext(PaletteContext);
+
   return (
     <div style={styles.root}>
       <div style={styles.header}>

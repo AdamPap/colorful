@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -16,6 +16,8 @@ import { Add, Shuffle } from "@material-ui/icons";
 import DraggableColorBox from "./DraggableColorBox";
 import chroma from "chroma-js";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { PaletteContext } from "../contexts/PaletteContext";
+import { useRouter } from "next/router";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -32,11 +34,15 @@ const defaultColor = {
 };
 
 const NewPaletteForm = () => {
+  const router = useRouter();
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState(defaultColor);
   const [colors, setColors] = useState([] as Color[]);
   const [colorName, setColorName] = useState("");
+
+  const { palettes, changePalettes } = useContext(PaletteContext);
 
   useEffect(() => {
     ValidatorForm.addValidationRule("colorNameExists", (value) => {
@@ -110,10 +116,24 @@ const NewPaletteForm = () => {
     setColorName(evt.target.value);
   };
 
+  const savePalette = () => {
+    const newPalette: Palette = {
+      paletteName: "New test palette",
+      id: "new-test-palette",
+      colors: colors,
+      emoji: "smile",
+    };
+
+    changePalettes([...palettes, newPalette]);
+
+    router.push("/");
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="default"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -132,6 +152,9 @@ const NewPaletteForm = () => {
           <Typography variant="h6" noWrap>
             Add New Colors
           </Typography>
+          <Button variant="contained" color="primary" onClick={savePalette}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -148,7 +171,7 @@ const NewPaletteForm = () => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
+        {/* <Divider /> */}
         <Typography variant="h4">Design Your Palette</Typography>
         <div>
           <Button
@@ -183,6 +206,7 @@ const NewPaletteForm = () => {
               "Color name already exists",
               "Color already exists",
             ]}
+            // TODO: fix color already exists appearing after adding a color
           />
           <Button
             variant="contained"

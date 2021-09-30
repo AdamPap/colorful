@@ -66,6 +66,7 @@ interface HeaderProps {
   isAllColorsPalette: boolean;
 }
 
-// interface SnackbarState {
-//   open: boolean;
-// }
+interface NewPaletteContextState {
+  newPalette: Color[];
+  changePalette: (newPalette: Color[]) => void;
+}
