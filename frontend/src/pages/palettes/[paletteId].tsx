@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { generatePalette, findPalette } from "../../colorHelpers";
 import Palette from "../../components/Palette";
-import palettes from "../../seedColors";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { PaletteContext } from "../../contexts/PaletteContext";
 
 const PaletteShow = () => {
+  const { palettes } = useContext(PaletteContext);
+
   const router = useRouter();
   const [paletteId, setPaletteId] = useState("material-ui-colors");
 
