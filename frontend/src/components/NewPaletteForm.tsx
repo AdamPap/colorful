@@ -41,6 +41,7 @@ const NewPaletteForm = () => {
   const [currentColor, setCurrentColor] = useState(defaultColor);
   const [colors, setColors] = useState([] as Color[]);
   const [colorName, setColorName] = useState("");
+  const [paletteName, setPaletteName] = useState("");
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
@@ -117,13 +118,14 @@ const NewPaletteForm = () => {
   };
 
   const savePalette = () => {
+    const newPaletteName = "New test palette";
     const newPalette: Palette = {
-      paletteName: "New test palette",
-      id: "new-test-palette",
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().split(" ").join("-"),
       colors: colors,
       emoji: "smile",
     };
-
+    console.log(newPalette.id);
     changePalettes([...palettes, newPalette]);
 
     router.push("/");
