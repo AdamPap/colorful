@@ -131,6 +131,11 @@ const NewPaletteForm = () => {
     router.push("/");
   };
 
+  const deleteColor = (colorName: string) => {
+    console.log("DEL");
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -233,6 +238,7 @@ const NewPaletteForm = () => {
               key={color.name}
               name={color.name}
               color={color.color}
+              deleteColor={deleteColor}
             />
           );
         })}
