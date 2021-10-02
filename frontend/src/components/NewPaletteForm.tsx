@@ -9,9 +9,10 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "../styles/NewPaletteFormStyles";
 import { ChromePicker, ColorResult } from "react-color";
-import { Button, Divider } from "@material-ui/core";
+import { Button, Divider, Slide, Snackbar } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
 import DraggableColorBox from "./DraggableColorBox";
 import chroma from "chroma-js";
@@ -42,6 +43,8 @@ const NewPaletteForm = () => {
   const [colors, setColors] = useState([] as Color[]);
   const [colorName, setColorName] = useState("");
   const [paletteName, setPaletteName] = useState("");
+  const [colorNameToDelete, setColorNameToDelete] = useState("");
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
@@ -132,8 +135,15 @@ const NewPaletteForm = () => {
   };
 
   const deleteColor = (colorName: string) => {
-    console.log("DEL");
     setColors(colors.filter((color) => color.name !== colorName));
+    // setColorNameToDelete(colorName,  () => {
+    //   setIsSnackbarOpen(true);
+    // });
+    setIsSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = () => {
+    setIsSnackbarOpen(false);
   };
 
   return (
@@ -242,6 +252,26 @@ const NewPaletteForm = () => {
             />
           );
         })}
+
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          open={isSnackbarOpen}
+          message={<span id="message-id">{`${colorName} deleted!`}</span>}
+          onClose={handleSnackbarClose}
+          TransitionComponent={Slide}
+          autoHideDuration={3000}
+          // ContentProps={{"aria-describeby": "message-id"}}
+          action={
+            <IconButton
+              onClick={handleSnackbarClose}
+              color="inherit"
+              key="close"
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+          }
+        />
       </main>
     </div>
   );

@@ -15,7 +15,6 @@ const DraggableColorBox = ({
   const classes = useStyles();
 
   const handleDelete = () => {
-    console.log("Deleting...");
     deleteColor(name);
   };
 
