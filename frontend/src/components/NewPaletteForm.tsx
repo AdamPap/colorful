@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,16 +9,16 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import CloseIcon from "@material-ui/icons/Close";
 import useStyles from "../styles/NewPaletteFormStyles";
 import { ChromePicker, ColorResult } from "react-color";
-import { Button, Divider, Slide, Snackbar } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
 import DraggableColorBox from "./DraggableColorBox";
 import chroma from "chroma-js";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { PaletteContext } from "../contexts/PaletteContext";
 import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -48,6 +48,8 @@ const NewPaletteForm = () => {
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   useEffect(() => {
     ValidatorForm.addValidationRule("colorNameExists", (value) => {
       if (colors.some(({ name }) => name.toLowerCase() === value.toLowerCase()))
@@ -60,6 +62,20 @@ const NewPaletteForm = () => {
       return true;
     });
   });
+
+  // this useEffect fires only on state updates and not
+  // on initial render
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    enqueueSnackbar(`${colorNameToDelete} deleted!`, {
+      autoHideDuration: 3000,
+      onClose: handleSnackbarClose,
+    });
+  }, [colorNameToDelete, enqueueSnackbar]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -136,11 +152,8 @@ const NewPaletteForm = () => {
 
   const deleteColor = (colorName: string) => {
     setColors(colors.filter((color) => color.name !== colorName));
-    // setColorNameToDelete(colorName,  () => {
-    //   setIsSnackbarOpen(true);
-    // });
     setColorNameToDelete(colorName);
-    setIsSnackbarOpen(true);
+    // setIsSnackbarOpen(true);
   };
 
   const handleSnackbarClose = () => {
@@ -253,28 +266,6 @@ const NewPaletteForm = () => {
             />
           );
         })}
-
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-          open={isSnackbarOpen}
-          message={
-            <span id="message-id">{`${colorNameToDelete} deleted!`}</span>
-          }
-          onClose={handleSnackbarClose}
-          TransitionComponent={Slide}
-          autoHideDuration={3000}
-          // ContentProps={{"aria-describeby": "message-id"}}
-          action={
-            <IconButton
-              onClick={handleSnackbarClose}
-              color="inherit"
-              key="close"
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-          }
-        />
       </main>
     </div>
   );

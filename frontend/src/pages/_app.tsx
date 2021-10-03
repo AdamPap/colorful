@@ -1,3 +1,4 @@
+import { SnackbarProvider } from "notistack";
 import "../../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ColorShadesProvider>
       <ColorFormatProvider>
         <PaletteProvider>
-          <Component {...pageProps} />
+          <SnackbarProvider maxSnack={3}>
+            <Component {...pageProps} />
+          </SnackbarProvider>
         </PaletteProvider>
       </ColorFormatProvider>
     </ColorShadesProvider>
