@@ -139,6 +139,7 @@ const NewPaletteForm = () => {
     // setColorNameToDelete(colorName,  () => {
     //   setIsSnackbarOpen(true);
     // });
+    setColorNameToDelete(colorName);
     setIsSnackbarOpen(true);
   };
 
@@ -256,7 +257,9 @@ const NewPaletteForm = () => {
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           open={isSnackbarOpen}
-          message={<span id="message-id">{`${colorName} deleted!`}</span>}
+          message={
+            <span id="message-id">{`${colorNameToDelete} deleted!`}</span>
+          }
           onClose={handleSnackbarClose}
           TransitionComponent={Slide}
           autoHideDuration={3000}
