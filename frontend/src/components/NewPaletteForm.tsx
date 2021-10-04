@@ -13,12 +13,13 @@ import useStyles from "../styles/NewPaletteFormStyles";
 import { ChromePicker, ColorResult } from "react-color";
 import { Button } from "@material-ui/core";
 import { Add, Shuffle } from "@material-ui/icons";
-import DraggableColorBox from "./DraggableColorBox";
 import chroma from "chroma-js";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { PaletteContext } from "../contexts/PaletteContext";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
+import DraggableColorList from "./DraggableColorList";
+import { arrayMove } from "react-sortable-hoc";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -160,6 +161,16 @@ const NewPaletteForm = () => {
     setIsSnackbarOpen(false);
   };
 
+  const onSortEnd = ({
+    oldIndex,
+    newIndex,
+  }: {
+    oldIndex: number;
+    newIndex: number;
+  }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -256,16 +267,12 @@ const NewPaletteForm = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map((color) => {
-          return (
-            <DraggableColorBox
-              key={color.name}
-              name={color.name}
-              color={color.color}
-              deleteColor={deleteColor}
-            />
-          );
-        })}
+        <DraggableColorList
+          axis="xy"
+          onSortEnd={onSortEnd}
+          colors={colors}
+          deleteColor={deleteColor}
+        />
       </main>
     </div>
   );

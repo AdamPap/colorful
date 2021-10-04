@@ -70,3 +70,8 @@ interface NewPaletteContextState {
   newPalette: Color[];
   changePalette: (newPalette: Color[]) => void;
 }
+
+interface DraggableColorListProps {
+  colors: Color[];
+  deleteColor: (colorName: string) => void;
+}
