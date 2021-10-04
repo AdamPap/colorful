@@ -5,7 +5,7 @@ const styles = {
     flexWrap: "wrap" as "wrap",
     borderRadius: "6px",
     overflow: "hidden",
-    background: "white",
+    background: "#F2F2F2",
   },
   color: {
     minHeight: "40px",
