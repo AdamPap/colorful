@@ -1,27 +1,22 @@
-import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import Link from "next/link";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import useStyles from "../styles/NewPaletteFormStyles";
-import { ChromePicker, ColorResult } from "react-color";
+import { ColorResult } from "react-color";
 import { Button } from "@material-ui/core";
-import { Add, Shuffle } from "@material-ui/icons";
+import { Shuffle } from "@material-ui/icons";
 import chroma from "chroma-js";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { PaletteContext } from "../contexts/PaletteContext";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import NewPaletteFormNav from "./NewPaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -44,26 +39,12 @@ const NewPaletteForm = () => {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState(defaultColor);
   const [colors, setColors] = useState([] as Color[]);
-  const [colorName, setColorName] = useState("");
   const [colorNameToDelete, setColorNameToDelete] = useState("");
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    ValidatorForm.addValidationRule("colorNameExists", (value) => {
-      if (colors.some(({ name }) => name.toLowerCase() === value.toLowerCase()))
-        return false;
-      return true;
-    });
-
-    ValidatorForm.addValidationRule("colorExists", (value) => {
-      if (colors.some(({ color }) => color === currentColor.hex)) return false;
-      return true;
-    });
-  });
 
   // this useEffect fires only on state updates and not
   // on initial render
@@ -91,13 +72,12 @@ const NewPaletteForm = () => {
     setCurrentColor(newColor);
   };
 
-  const addNewColor = () => {
+  const addNewColor = (colorName: string) => {
     const newColor = {
       color: currentColor.hex,
       name: colorName,
     };
     setColors([...colors, newColor]);
-    setColorName("");
   };
 
   const clearPalette = () => {
@@ -128,10 +108,6 @@ const NewPaletteForm = () => {
     };
 
     setCurrentColor(colorObject);
-  };
-
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setColorName(evt.target.value);
   };
 
   const savePalette = (newPaletteName: string): void => {
@@ -187,7 +163,6 @@ const NewPaletteForm = () => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        {/* <Divider /> */}
         <Typography variant="h4">Design Your Palette</Typography>
         <div>
           <Button
@@ -207,33 +182,12 @@ const NewPaletteForm = () => {
             Random Color
           </Button>
         </div>
-        <ChromePicker
-          color={currentColor.hex}
-          onChangeComplete={updateCurrentColor}
+        <ColorPickerForm
+          addNewColor={addNewColor}
+          currentColor={currentColor}
+          updateCurrentColor={updateCurrentColor}
+          colors={colors}
         />
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator
-            name="colorName"
-            value={colorName}
-            onChange={handleChange}
-            validators={["required", "colorNameExists", "colorExists"]}
-            errorMessages={[
-              "Color name is required",
-              "Color name already exists",
-              "Color already exists",
-            ]}
-            // TODO: fix color already exists appearing after adding a color
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ backgroundColor: currentColor.hex }}
-            startIcon={<Add />}
-            type="submit"
-          >
-            Add Color
-          </Button>
-        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {

@@ -84,3 +84,10 @@ interface NewPaletteFormNavProps {
   handleDrawerOpen: () => void;
   savePalette: (newPaletteName: string) => void;
 }
+
+interface ColorPickerFormProps {
+  currentColor: ColorResult;
+  colors: Color[];
+  updateCurrentColor: (newColor: ColorResult) => void;
+  addNewColor: (colorName: string) => void;
+}
