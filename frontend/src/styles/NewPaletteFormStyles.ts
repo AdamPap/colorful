@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerContainer: {
       width: "100%",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",

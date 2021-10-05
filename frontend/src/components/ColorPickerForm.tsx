@@ -3,6 +3,7 @@ import { ChromePicker, ColorResult } from "react-color";
 import { Button } from "@material-ui/core";
 import { Add, NotInterested, Shuffle } from "@material-ui/icons";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import useStyles from "../styles/ColorPickerStyles";
 
 const ColorPickerForm = ({
   currentColor,
@@ -12,6 +13,8 @@ const ColorPickerForm = ({
   addNewColor,
 }: ColorPickerFormProps) => {
   const isPaletteFull = colors.length >= maxColors;
+
+  const classes = useStyles({ isPaletteFull, currentColor });
 
   const [colorName, setColorName] = useState("");
 
@@ -38,15 +41,15 @@ const ColorPickerForm = ({
   };
 
   return (
-    <>
-      <div style={{ marginBottom: "24px" }}>
-        <ChromePicker
-          color={currentColor.hex}
-          onChangeComplete={updateCurrentColor}
-        />
-      </div>
+    <div className={classes.root}>
+      <ChromePicker
+        className={classes.colorPicker}
+        color={currentColor.hex}
+        onChangeComplete={updateCurrentColor}
+      />
       <ValidatorForm onSubmit={handleSubmit}>
         <TextValidator
+          className={classes.form}
           placeholder="Color Name"
           name="colorName"
           value={colorName}
@@ -62,12 +65,7 @@ const ColorPickerForm = ({
         <Button
           variant="contained"
           // color="primary"
-          style={{
-            marginTop: "8px",
-            width: "100%",
-            backgroundColor: isPaletteFull ? "gray" : currentColor.hex,
-            color: "white",
-          }}
+          className={classes.button}
           startIcon={isPaletteFull ? <NotInterested /> : <Add />}
           disabled={isPaletteFull}
           type="submit"
@@ -75,7 +73,7 @@ const ColorPickerForm = ({
           {isPaletteFull ? "Palette Full" : "Add Color"}
         </Button>
       </ValidatorForm>
-    </>
+    </div>
   );
 };
 
