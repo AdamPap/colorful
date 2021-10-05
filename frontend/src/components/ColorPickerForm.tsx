@@ -39,12 +39,15 @@ const ColorPickerForm = ({
 
   return (
     <>
-      <ChromePicker
-        color={currentColor.hex}
-        onChangeComplete={updateCurrentColor}
-      />
+      <div style={{ marginBottom: "24px" }}>
+        <ChromePicker
+          color={currentColor.hex}
+          onChangeComplete={updateCurrentColor}
+        />
+      </div>
       <ValidatorForm onSubmit={handleSubmit}>
         <TextValidator
+          placeholder="Color Name"
           name="colorName"
           value={colorName}
           onChange={handleChange}
@@ -60,8 +63,10 @@ const ColorPickerForm = ({
           variant="contained"
           // color="primary"
           style={{
+            marginTop: "8px",
+            width: "100%",
             backgroundColor: isPaletteFull ? "gray" : currentColor.hex,
-            color: isPaletteFull ? "white" : "primary",
+            color: "white",
           }}
           startIcon={isPaletteFull ? <NotInterested /> : <Add />}
           disabled={isPaletteFull}

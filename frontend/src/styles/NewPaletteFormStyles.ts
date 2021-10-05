@@ -61,8 +61,29 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
-    buttons: {
+    navButtons: {
       margin: `0px ${theme.spacing(1)}px`,
+    },
+    formWrapper: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "end",
+      alignItems: "center",
+    },
+    drawerContainer: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    drawerButtons: {
+      margin: `${theme.spacing(3)}px ${theme.spacing(1)}px`,
+      "& button": {
+        margin: theme.spacing(1),
+        marginBottom: "0",
+        marginTop: "0",
+      },
     },
   })
 );

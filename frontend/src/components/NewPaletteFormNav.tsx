@@ -45,33 +45,36 @@ const NewPaletteFormNav = ({
           <Typography variant="h6" noWrap>
             Add New Colors
           </Typography>
-          <ValidatorForm onSubmit={() => savePalette(paletteName)}>
-            <TextValidator
-              name="paletteNameForm"
-              value={paletteName}
-              onChange={handleChange}
-              validators={["required"]}
-              errorMessages={["Palette name is required"]}
-            />
-            <Button
-              className={classes.buttons}
-              variant="contained"
-              color="primary"
-              type="submit"
-            >
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <div className={classes.formWrapper}>
+            <ValidatorForm onSubmit={() => savePalette(paletteName)}>
+              <TextValidator
+                placeholder="Palette Name"
+                name="paletteNameForm"
+                value={paletteName}
+                onChange={handleChange}
+                validators={["required"]}
+                errorMessages={["Palette name is required"]}
+              />
+              <Button
+                className={classes.navButtons}
+                variant="contained"
+                color="primary"
+                type="submit"
+              >
+                Save Palette
+              </Button>
+            </ValidatorForm>
 
-          <Link href="/" passHref>
-            <Button
-              className={classes.buttons}
-              variant="contained"
-              color="secondary"
-            >
-              Go Back
-            </Button>
-          </Link>
+            <Link href="/" passHref>
+              <Button
+                className={classes.buttons}
+                variant="contained"
+                color="secondary"
+              >
+                Go Back
+              </Button>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
     </>

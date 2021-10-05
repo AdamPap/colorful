@@ -165,32 +165,36 @@ const NewPaletteForm = () => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Typography variant="h4">Design Your Palette</Typography>
-        <div>
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<DeleteIcon />}
-            onClick={clearPalette}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<Shuffle />}
-            onClick={changeToRandomColor}
-          >
-            Random Color
-          </Button>
+        <div className={classes.drawerContainer}>
+          <Typography variant="h4">Design Your Palette</Typography>
+          <div className={classes.drawerButtons}>
+            <Button
+              size="small"
+              variant="outlined"
+              color="secondary"
+              startIcon={<DeleteIcon />}
+              onClick={clearPalette}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              size="small"
+              variant="outlined"
+              color="primary"
+              startIcon={<Shuffle />}
+              onClick={changeToRandomColor}
+            >
+              Random Color
+            </Button>
+          </div>
+          <ColorPickerForm
+            addNewColor={addNewColor}
+            currentColor={currentColor}
+            updateCurrentColor={updateCurrentColor}
+            colors={colors}
+            maxColors={maxColors}
+          />
         </div>
-        <ColorPickerForm
-          addNewColor={addNewColor}
-          currentColor={currentColor}
-          updateCurrentColor={updateCurrentColor}
-          colors={colors}
-          maxColors={maxColors}
-        />
       </Drawer>
       <main
         className={clsx(classes.content, {
