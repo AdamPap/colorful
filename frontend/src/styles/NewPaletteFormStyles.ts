@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: `0px ${theme.spacing(1)}px`,
     },
     formWrapper: {
-      width: "100%",
+      // width: "100%",
       display: "flex",
       justifyContent: "end",
       alignItems: "center",
@@ -85,6 +85,12 @@ const useStyles = makeStyles((theme: Theme) =>
         marginBottom: "0",
         marginTop: "0",
       },
+    },
+    toolbarWrapper: {
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      justifyContent: "space-between",
     },
   })
 );

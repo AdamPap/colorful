@@ -19,7 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ColorShadesProvider>
       <ColorFormatProvider>
         <PaletteProvider>
-          <SnackbarProvider maxSnack={3}>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          >
             <Component {...pageProps} />
           </SnackbarProvider>
         </PaletteProvider>

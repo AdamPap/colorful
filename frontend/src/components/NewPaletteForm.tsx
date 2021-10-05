@@ -57,7 +57,7 @@ const NewPaletteForm = () => {
       return;
     }
     enqueueSnackbar(`${colorNameToDelete} deleted!`, {
-      autoHideDuration: 2000,
+      autoHideDuration: 1500,
       onClose: handleSnackbarClose,
     });
   }, [colorNameToDelete, enqueueSnackbar]);
