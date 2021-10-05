@@ -1,5 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import Link from "next/link";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -194,9 +195,23 @@ const NewPaletteForm = () => {
           <Typography variant="h6" noWrap>
             Add New Colors
           </Typography>
-          <Button variant="contained" color="primary" onClick={savePalette}>
+          <Button
+            className={classes.buttons}
+            variant="contained"
+            color="primary"
+            onClick={savePalette}
+          >
             Save Palette
           </Button>
+          <Link href="/" passHref>
+            <Button
+              className={classes.buttons}
+              variant="contained"
+              color="secondary"
+            >
+              Go Back
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -272,6 +287,7 @@ const NewPaletteForm = () => {
           onSortEnd={onSortEnd}
           colors={colors}
           deleteColor={deleteColor}
+          distance={1}
         />
       </main>
     </div>

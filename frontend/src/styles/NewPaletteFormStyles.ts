@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    buttons: {
+      margin: `0px ${theme.spacing(1)}px`,
+    },
   })
 );
 

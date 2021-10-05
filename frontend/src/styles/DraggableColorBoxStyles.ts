@@ -10,6 +10,11 @@ const styles = {
     marginBottom: "-5px",
     position: "relative",
     color: "rgba(0,0,0, 0.5)",
+    // cursor: "pointer",
+    // "&:hover, &:active": {
+    //   cursor: " grab",
+    //   color: "white!important",
+    // },
   },
   boxContent: {
     position: "absolute",
