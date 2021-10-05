@@ -88,6 +88,7 @@ interface NewPaletteFormNavProps {
 interface ColorPickerFormProps {
   currentColor: ColorResult;
   colors: Color[];
+  maxColors: number;
   updateCurrentColor: (newColor: ColorResult) => void;
   addNewColor: (colorName: string) => void;
 }

@@ -32,6 +32,8 @@ const defaultColor = {
   },
 };
 
+const maxColors = 20;
+
 const NewPaletteForm = () => {
   const router = useRouter();
 
@@ -187,6 +189,7 @@ const NewPaletteForm = () => {
           currentColor={currentColor}
           updateCurrentColor={updateCurrentColor}
           colors={colors}
+          maxColors={maxColors}
         />
       </Drawer>
       <main
