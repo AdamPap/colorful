@@ -75,3 +75,5 @@ interface DraggableColorListProps {
   colors: Color[];
   deleteColor: (colorName: string) => void;
 }
+
+type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;

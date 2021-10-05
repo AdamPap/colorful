@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
+import NewPaletteFormNav from "./NewPaletteFormNav";
 
 const defaultColor = {
   hex: "#236C7F",
@@ -44,7 +45,6 @@ const NewPaletteForm = () => {
   const [currentColor, setCurrentColor] = useState(defaultColor);
   const [colors, setColors] = useState([] as Color[]);
   const [colorName, setColorName] = useState("");
-  const [paletteName, setPaletteName] = useState("");
   const [colorNameToDelete, setColorNameToDelete] = useState("");
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
@@ -74,7 +74,7 @@ const NewPaletteForm = () => {
       return;
     }
     enqueueSnackbar(`${colorNameToDelete} deleted!`, {
-      autoHideDuration: 3000,
+      autoHideDuration: 2000,
       onClose: handleSnackbarClose,
     });
   }, [colorNameToDelete, enqueueSnackbar]);
@@ -86,10 +86,6 @@ const NewPaletteForm = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  // const handleSubmit = () => {
-  //   console.log("submitted");
-  // };
 
   const updateCurrentColor = (newColor: ColorResult) => {
     setCurrentColor(newColor);
@@ -155,7 +151,6 @@ const NewPaletteForm = () => {
   const deleteColor = (colorName: string) => {
     setColors(colors.filter((color) => color.name !== colorName));
     setColorNameToDelete(colorName);
-    // setIsSnackbarOpen(true);
   };
 
   const handleSnackbarClose = () => {
@@ -174,46 +169,12 @@ const NewPaletteForm = () => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        color="default"
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuOpenIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Add New Colors
-          </Typography>
-          <Button
-            className={classes.buttons}
-            variant="contained"
-            color="primary"
-            onClick={savePalette}
-          >
-            Save Palette
-          </Button>
-          <Link href="/" passHref>
-            <Button
-              className={classes.buttons}
-              variant="contained"
-              color="secondary"
-            >
-              Go Back
-            </Button>
-          </Link>
-        </Toolbar>
-      </AppBar>
+      <NewPaletteFormNav
+        open={open}
+        classes={classes}
+        handleDrawerOpen={handleDrawerOpen}
+        savePalette={savePalette}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
