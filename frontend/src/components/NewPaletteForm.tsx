@@ -134,15 +134,13 @@ const NewPaletteForm = () => {
     setColorName(evt.target.value);
   };
 
-  const savePalette = () => {
-    const newPaletteName = "New test palette";
+  const savePalette = (newPaletteName: string): void => {
     const newPalette: Palette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().split(" ").join("-"),
       colors: colors,
       emoji: "smile",
     };
-    console.log(newPalette.id);
     changePalettes([...palettes, newPalette]);
 
     router.push("/");

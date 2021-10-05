@@ -22,19 +22,18 @@ import { useSnackbar } from "notistack";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 
-interface NewPaletteFormNavProps {
-  open: boolean;
-  classes: ClassNameMap;
-  handleDrawerOpen: () => void;
-  savePalette: () => void;
-}
-
 const NewPaletteFormNav = ({
   open,
   classes,
   handleDrawerOpen,
   savePalette,
 }: NewPaletteFormNavProps) => {
+  const [paletteName, setPaletteName] = useState("");
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setPaletteName(evt.target.value);
+  };
+
   return (
     <>
       <CssBaseline />
@@ -58,14 +57,24 @@ const NewPaletteFormNav = ({
           <Typography variant="h6" noWrap>
             Add New Colors
           </Typography>
-          <Button
-            className={classes.buttons}
-            variant="contained"
-            color="primary"
-            onClick={savePalette}
-          >
-            Save Palette
-          </Button>
+          <ValidatorForm onSubmit={() => savePalette(paletteName)}>
+            <TextValidator
+              name="paletteNameForm"
+              value={paletteName}
+              onChange={handleChange}
+              validators={["required"]}
+              errorMessages={["Palette name is required"]}
+            />
+            <Button
+              className={classes.buttons}
+              variant="contained"
+              color="primary"
+              type="submit"
+            >
+              Save Palette
+            </Button>
+          </ValidatorForm>
+
           <Link href="/" passHref>
             <Button
               className={classes.buttons}

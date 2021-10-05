@@ -77,3 +77,10 @@ interface DraggableColorListProps {
 }
 
 type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
+
+interface NewPaletteFormNavProps {
+  open: boolean;
+  classes: ClassNameMap;
+  handleDrawerOpen: () => void;
+  savePalette: (newPaletteName: string) => void;
+}
