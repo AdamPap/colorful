@@ -47,7 +47,15 @@ const PaletteMetaForm = ({
   return (
     <>
       <Dialog open={stage === Stages.Emoji} onClose={hideForm}>
-        <Picker onSelect={save} />
+        <DialogTitle style={{ margin: "0 auto" }}>
+          Choose a Palette Emoji
+        </DialogTitle>
+        <Picker
+          onSelect={save}
+          title=""
+          emoji={"smiley"}
+          enableFrequentEmojiSort
+        />
       </Dialog>
       <Dialog
         open={stage === Stages.PaletteName}
