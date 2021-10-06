@@ -92,3 +92,8 @@ interface ColorPickerFormProps {
   updateCurrentColor: (newColor: ColorResult) => void;
   addNewColor: (colorName: string) => void;
 }
+
+interface PaletteMetaFormProps {
+  savePalette: (newPaletteName: string) => void;
+  classes: ClassNameMap;
+}

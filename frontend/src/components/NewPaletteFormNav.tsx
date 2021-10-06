@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import { Button } from "@material-ui/core";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import PaletteMetaForm from "./PaletteMetaForm";
 
 const NewPaletteFormNav = ({
   open,
@@ -16,12 +15,6 @@ const NewPaletteFormNav = ({
   handleDrawerOpen,
   savePalette,
 }: NewPaletteFormNavProps) => {
-  const [paletteName, setPaletteName] = useState("");
-
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setPaletteName(evt.target.value);
-  };
-
   return (
     <>
       <CssBaseline />
@@ -47,25 +40,7 @@ const NewPaletteFormNav = ({
               Add New Colors
             </Typography>
             <div className={classes.formWrapper}>
-              <ValidatorForm onSubmit={() => savePalette(paletteName)}>
-                <TextValidator
-                  placeholder="Palette Name"
-                  name="paletteNameForm"
-                  value={paletteName}
-                  onChange={handleChange}
-                  validators={["required"]}
-                  errorMessages={["Palette name is required"]}
-                />
-                <Button
-                  className={classes.navButtons}
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                >
-                  Save Palette
-                </Button>
-              </ValidatorForm>
-
+              <PaletteMetaForm savePalette={savePalette} classes={classes} />
               <Link href="/" passHref>
                 <Button
                   className={classes.buttons}
