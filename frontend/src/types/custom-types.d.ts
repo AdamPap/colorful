@@ -94,6 +94,8 @@ interface ColorPickerFormProps {
 }
 
 interface PaletteMetaFormProps {
-  savePalette: (newPaletteName: string) => void;
   classes: ClassNameMap;
+  isFormOpen: boolean;
+  savePalette: (newPaletteName: string) => void;
+  hideForm: () => void;
 }

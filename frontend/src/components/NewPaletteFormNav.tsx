@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import { Button } from "@material-ui/core";
 import PaletteMetaForm from "./PaletteMetaForm";
+import { useState } from "react";
 
 const NewPaletteFormNav = ({
   open,
@@ -15,6 +16,16 @@ const NewPaletteFormNav = ({
   handleDrawerOpen,
   savePalette,
 }: NewPaletteFormNavProps) => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const showForm = () => {
+    setIsFormOpen(true);
+  };
+
+  const hideForm = () => {
+    setIsFormOpen(false);
+  };
+
   return (
     <>
       <CssBaseline />
@@ -40,20 +51,35 @@ const NewPaletteFormNav = ({
               Add New Colors
             </Typography>
             <div className={classes.formWrapper}>
-              <PaletteMetaForm savePalette={savePalette} classes={classes} />
               <Link href="/" passHref>
                 <Button
-                  className={classes.buttons}
+                  className={classes.navButtons}
                   variant="contained"
                   color="secondary"
                 >
                   Go Back
                 </Button>
               </Link>
+              <Button
+                className={classes.navButtons}
+                variant="contained"
+                color="primary"
+                onClick={showForm}
+              >
+                Save Palette
+              </Button>
             </div>
           </div>
         </Toolbar>
       </AppBar>
+      {isFormOpen && (
+        <PaletteMetaForm
+          isFormOpen={isFormOpen}
+          savePalette={savePalette}
+          classes={classes}
+          hideForm={hideForm}
+        />
+      )}
     </>
   );
 };
