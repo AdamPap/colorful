@@ -112,12 +112,12 @@ const NewPaletteForm = () => {
     setCurrentColor(colorObject);
   };
 
-  const savePalette = (newPaletteName: string): void => {
+  const savePalette = (newPaletteName: string, emoji: string): void => {
     const newPalette: Palette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().split(" ").join("-"),
       colors: colors,
-      emoji: "smile",
+      emoji: emoji,
     };
     changePalettes([...palettes, newPalette]);
 

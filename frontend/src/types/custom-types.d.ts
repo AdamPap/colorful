@@ -82,7 +82,7 @@ interface NewPaletteFormNavProps {
   open: boolean;
   classes: ClassNameMap;
   handleDrawerOpen: () => void;
-  savePalette: (newPaletteName: string) => void;
+  savePalette: (newPaletteName: string, emoji: string) => void;
 }
 
 interface ColorPickerFormProps {
@@ -96,6 +96,8 @@ interface ColorPickerFormProps {
 interface PaletteMetaFormProps {
   classes: ClassNameMap;
   isFormOpen: boolean;
-  savePalette: (newPaletteName: string) => void;
+  stage: Stages;
+  moveToEmojiStage: () => void;
+  savePalette: (newPaletteName: string, emoji: string) => void;
   hideForm: () => void;
 }

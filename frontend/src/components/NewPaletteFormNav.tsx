@@ -9,6 +9,7 @@ import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import { Button } from "@material-ui/core";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { useState } from "react";
+import { Stages } from "../enums/StagesEnum";
 
 const NewPaletteFormNav = ({
   open,
@@ -17,13 +18,18 @@ const NewPaletteFormNav = ({
   savePalette,
 }: NewPaletteFormNavProps) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [stage, setStage] = useState(Stages.None);
 
   const showForm = () => {
-    setIsFormOpen(true);
+    setStage(Stages.PaletteName);
   };
 
   const hideForm = () => {
-    setIsFormOpen(false);
+    setIsFormOpen(stage === Stages.None);
+  };
+
+  const moveToEmojiStage = () => {
+    setStage(Stages.Emoji);
   };
 
   return (
@@ -72,14 +78,15 @@ const NewPaletteFormNav = ({
           </div>
         </Toolbar>
       </AppBar>
-      {isFormOpen && (
-        <PaletteMetaForm
-          isFormOpen={isFormOpen}
-          savePalette={savePalette}
-          classes={classes}
-          hideForm={hideForm}
-        />
-      )}
+
+      <PaletteMetaForm
+        isFormOpen={isFormOpen}
+        savePalette={savePalette}
+        classes={classes}
+        hideForm={hideForm}
+        stage={stage}
+        moveToEmojiStage={moveToEmojiStage}
+      />
     </>
   );
 };
