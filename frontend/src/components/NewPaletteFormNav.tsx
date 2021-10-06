@@ -17,7 +17,6 @@ const NewPaletteFormNav = ({
   handleDrawerOpen,
   savePalette,
 }: NewPaletteFormNavProps) => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [stage, setStage] = useState(Stages.None);
 
   const showForm = () => {
@@ -25,7 +24,7 @@ const NewPaletteFormNav = ({
   };
 
   const hideForm = () => {
-    setIsFormOpen(stage === Stages.None);
+    setStage(Stages.None);
   };
 
   const moveToEmojiStage = () => {
@@ -80,7 +79,6 @@ const NewPaletteFormNav = ({
       </AppBar>
 
       <PaletteMetaForm
-        isFormOpen={isFormOpen}
         savePalette={savePalette}
         classes={classes}
         hideForm={hideForm}

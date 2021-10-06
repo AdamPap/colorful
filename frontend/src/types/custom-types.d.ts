@@ -95,7 +95,6 @@ interface ColorPickerFormProps {
 
 interface PaletteMetaFormProps {
   classes: ClassNameMap;
-  isFormOpen: boolean;
   stage: Stages;
   moveToEmojiStage: () => void;
   savePalette: (newPaletteName: string, emoji: string) => void;

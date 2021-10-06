@@ -16,7 +16,6 @@ import { Stages } from "../enums/StagesEnum";
 const PaletteMetaForm = ({
   savePalette,
   classes,
-  isFormOpen,
   stage,
   moveToEmojiStage,
   hideForm,
@@ -47,7 +46,7 @@ const PaletteMetaForm = ({
 
   return (
     <>
-      <Dialog open={stage === Stages.Emoji}>
+      <Dialog open={stage === Stages.Emoji} onClose={hideForm}>
         <Picker onSelect={save} />
       </Dialog>
       <Dialog
