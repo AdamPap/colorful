@@ -46,9 +46,10 @@ const NewPaletteForm = () => {
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
-  // const colorNameInput = useRef<HTMLInputElement>(null);
   const isPaletteFull = colors.length >= maxColors;
-  console.log(isPaletteFull, colors.length);
+
+  // const colorNameInput = useRef<HTMLInputElement>(null);
+
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   // this useEffect fires only on state updates and not
@@ -91,8 +92,12 @@ const NewPaletteForm = () => {
 
   const addRandomColor = () => {
     const allColors = palettes.map((palette) => palette.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    setColors([...colors, allColors[rand]]);
+    let color: Color;
+    do {
+      let rand = Math.floor(Math.random() * allColors.length);
+      color = allColors[rand];
+    } while (colors.some((c) => c === color));
+    setColors([...colors, color]);
   };
 
   // TODO:  fix this to generate color without adding. Figure
