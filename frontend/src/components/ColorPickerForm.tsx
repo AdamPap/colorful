@@ -11,7 +11,8 @@ const ColorPickerForm = ({
   maxColors,
   updateCurrentColor,
   addNewColor,
-}: ColorPickerFormProps) => {
+}: // colorNameInput,
+ColorPickerFormProps) => {
   const isPaletteFull = colors.length >= maxColors;
 
   const classes = useStyles({ isPaletteFull, currentColor });
@@ -45,10 +46,13 @@ const ColorPickerForm = ({
       <ChromePicker
         className={classes.colorPicker}
         color={currentColor.hex}
-        onChangeComplete={updateCurrentColor}
+        onChange={updateCurrentColor}
       />
       <ValidatorForm onSubmit={handleSubmit}>
         <TextValidator
+          // ref={(input) => {
+          //   colorNameInput = input;
+          // }}
           className={classes.form}
           placeholder="Color Name"
           name="colorName"

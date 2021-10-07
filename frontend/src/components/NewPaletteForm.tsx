@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { createRef, useContext, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
@@ -46,6 +46,9 @@ const NewPaletteForm = () => {
 
   const { palettes, changePalettes } = useContext(PaletteContext);
 
+  // const colorNameInput = useRef<HTMLInputElement>(null);
+  const isPaletteFull = colors.length >= maxColors;
+  console.log(isPaletteFull, colors.length);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   // this useEffect fires only on state updates and not
@@ -86,6 +89,14 @@ const NewPaletteForm = () => {
     setColors([]);
   };
 
+  const addRandomColor = () => {
+    const allColors = palettes.map((palette) => palette.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    setColors([...colors, allColors[rand]]);
+  };
+
+  // TODO:  fix this to generate color without adding. Figure
+  //        out how to use the ref  (undefined)
   const changeToRandomColor = () => {
     const possibleValues = "0123456789ABCDEF";
     let color = "#";
@@ -110,7 +121,14 @@ const NewPaletteForm = () => {
     };
 
     setCurrentColor(colorObject);
+    // inputFocus();
   };
+
+  // const inputFocus = () => {
+  //   if (colorNameInput && colorNameInput.current) {
+  //     colorNameInput.current.focus();
+  //   }
+  // };
 
   const savePalette = (newPaletteName: string, emoji: string): void => {
     const newPalette: Palette = {
@@ -182,7 +200,9 @@ const NewPaletteForm = () => {
               variant="outlined"
               color="primary"
               startIcon={<Shuffle />}
-              onClick={changeToRandomColor}
+              // onClick={changeToRandomColor}
+              onClick={addRandomColor}
+              disabled={isPaletteFull}
             >
               Random Color
             </Button>
@@ -193,6 +213,7 @@ const NewPaletteForm = () => {
             updateCurrentColor={updateCurrentColor}
             colors={colors}
             maxColors={maxColors}
+            // colorNameInput={colorNameInput}
           />
         </div>
       </Drawer>

@@ -89,6 +89,7 @@ interface ColorPickerFormProps {
   currentColor: ColorResult;
   colors: Color[];
   maxColors: number;
+  // colorNameInput: RefObject<HTMLInputElement>;
   updateCurrentColor: (newColor: ColorResult) => void;
   addNewColor: (colorName: string) => void;
 }
