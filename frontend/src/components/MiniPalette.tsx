@@ -1,8 +1,7 @@
+import Delete from "@material-ui/icons/Delete";
 import { createStyles, makeStyles } from "@material-ui/styles";
 import Link from "next/link";
-import styles from "../styles/MiniPaletteStyles";
-
-const useStyles = makeStyles(() => createStyles(styles));
+import useStyles from "../styles/MiniPaletteStyles";
 
 const MiniPalette = (palette: Palette) => {
   const classes = useStyles();
@@ -16,6 +15,9 @@ const MiniPalette = (palette: Palette) => {
 
   return (
     <div className={classes.root}>
+      <div className={classes.delete}>
+        <Delete fontSize="small" />
+      </div>
       <Link passHref href={`/palettes/${palette.id}`} key={palette.id}>
         <a>
           <div className={classes.colorContainer}>{colors}</div>

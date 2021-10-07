@@ -40,7 +40,6 @@ const PaletteMetaForm = ({
   };
 
   const save = (emoji: BaseEmoji) => {
-    console.log(emoji);
     savePalette(paletteName, emoji.native);
   };
 
