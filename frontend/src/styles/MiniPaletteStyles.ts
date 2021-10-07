@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "6px 6px 0 6px",
       boxShadow: "1px 1px 10px 2px rgba(0,0,0,0.05)",
       position: "relative",
+      transition: "all 0.3s ease-in-out",
       "&:hover $delete": {
-        display: "inline-block",
+        opacity: "1",
+        visibility: "visible",
       },
     },
     footer: {
@@ -38,16 +40,21 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "10px",
     },
     delete: {
-      display: "none",
+      opacity: "0",
+      visibility: "hidden",
       position: "absolute",
       right: "0",
       top: "0",
-      background: "red",
+      background: "#eb3d30",
       fontSize: "0.6rem",
       padding: "3px",
       borderRadius: "2px 2px 2px 8px",
       color: "white",
       cursor: "pointer",
+      transition: "all 0.2s ease-in-out",
+      "&:hover": {
+        background: "#bf3025",
+      },
     },
   })
 );
