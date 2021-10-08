@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 interface heightProps {
   showingFullPalette: boolean;
 }
@@ -13,6 +15,20 @@ const colorBoxStyles = {
     marginBottom: "-5px",
     "&:hover button": {
       opacity: 1,
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: (props: heightProps) =>
+        props.showingFullPalette ? "20%" : "50%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: (props: heightProps) =>
+        props.showingFullPalette ? "10%" : "50%",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: (props: heightProps) => (props.showingFullPalette ? "5%" : "50%"),
     },
   },
   boxContent: {

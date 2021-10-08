@@ -1,8 +1,4 @@
-import { createStyles, makeStyles } from "@material-ui/styles";
-import styles from "../styles/FooterStyles";
-
-// @ts-ignore
-const useStyles = makeStyles(() => createStyles(styles));
+import useStyles from "../styles/FooterStyles";
 
 const Footer = (palette: NewPalette) => {
   const classes = useStyles();
