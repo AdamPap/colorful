@@ -19,12 +19,12 @@ const colorBoxStyles = {
     [sizes.down("lg")]: {
       width: "25%",
       height: (props: heightProps) =>
-        props.showingFullPalette ? "20%" : "50%",
+        props.showingFullPalette ? "20%" : "33.33%",
     },
     [sizes.down("md")]: {
       width: "50%",
       height: (props: heightProps) =>
-        props.showingFullPalette ? "10%" : "50%",
+        props.showingFullPalette ? "10%" : "20%",
     },
     [sizes.down("xs")]: {
       width: "100%",

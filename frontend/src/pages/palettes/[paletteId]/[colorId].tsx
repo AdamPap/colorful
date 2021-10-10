@@ -67,7 +67,7 @@ const ColorShow: FC = ({
       <Header isAllColorsPalette={false} />
       <div
         style={{
-          height: "90%",
+          height: "85%",
           // overflow: "hidden",
         }}
       >
@@ -81,11 +81,11 @@ const ColorShow: FC = ({
             showingFullPalette={false}
           />
         ))}
-        <div className={classes.goBack}>
+        {/* <div className={classes.goBack}>
           <Link href={`/palettes/${palette.id}`}>
             <a className={classes.link}>GO BACK</a>
           </Link>
-        </div>
+        </div> */}
       </div>
       <Footer {...palette} />
     </div>

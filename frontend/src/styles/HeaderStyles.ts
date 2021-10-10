@@ -4,7 +4,7 @@ const headerStyles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    height: "12%",
+    height: "10%",
   },
   sliderContainer: {
     marginLeft: "50px",
