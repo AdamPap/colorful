@@ -114,6 +114,9 @@ const colorBoxStyles = {
       marginBottom: "0",
       padding: "1rem",
       textTransform: "uppercase",
+      [sizes.down("xs")]: {
+        fontSize: "5rem",
+      },
     },
     "& p": {
       fontSize: "2rem",
