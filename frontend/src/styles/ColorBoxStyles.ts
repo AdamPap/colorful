@@ -17,18 +17,22 @@ const colorBoxStyles = {
       opacity: 1,
     },
     [sizes.down("lg")]: {
-      width: "25%",
+      // width: "25%",
+      width: (props: heightProps) => (props.showingFullPalette ? "25%" : "20%"),
       height: (props: heightProps) =>
-        props.showingFullPalette ? "20%" : "33.33%",
+        props.showingFullPalette ? "20%" : "50%",
     },
     [sizes.down("md")]: {
-      width: "50%",
+      // width: "50%",
+      width: (props: heightProps) => (props.showingFullPalette ? "50%" : "50%"),
       height: (props: heightProps) =>
         props.showingFullPalette ? "10%" : "20%",
     },
     [sizes.down("xs")]: {
-      width: "100%",
-      height: (props: heightProps) => (props.showingFullPalette ? "5%" : "50%"),
+      // width: "100%",
+      width: (props: heightProps) =>
+        props.showingFullPalette ? "100%" : "100%",
+      height: (props: heightProps) => (props.showingFullPalette ? "5%" : "10%"),
     },
   },
   boxContent: {
