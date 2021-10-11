@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 const styles = {
   // PaletteList: {
   //   display: "flex",
@@ -9,6 +11,12 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "auto auto auto",
     gridGap: "20px",
+    [sizes.down("sm")]: {
+      gridTemplateColumns: "auto auto",
+    },
+    [sizes.down("xs")]: {
+      gridTemplateColumns: "auto",
+    },
   },
 };
 
