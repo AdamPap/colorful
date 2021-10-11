@@ -52,7 +52,7 @@ const NewPaletteFormNav = ({
             <MenuOpenIcon />
           </IconButton>
           <div className={classes.toolbarWrapper}>
-            <Typography variant="h6" noWrap>
+            <Typography className={classes.toolbarTitle} variant="h6" noWrap>
               Add New Colors
             </Typography>
             <div className={classes.formWrapper}>

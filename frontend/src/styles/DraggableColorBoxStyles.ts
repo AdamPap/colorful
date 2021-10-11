@@ -1,4 +1,5 @@
 import { createStyles, makeStyles } from "@material-ui/core";
+import sizes from "./sizes";
 
 const styles = {
   root: {
@@ -6,7 +7,7 @@ const styles = {
     height: "25%",
     margin: "0 auto",
     display: "inline-block",
-    curson: "pointer",
+    cursor: "pointer",
     marginBottom: "-5px",
     position: "relative",
     color: "rgba(0,0,0, 0.5)",
@@ -15,6 +16,18 @@ const styles = {
     //   cursor: " grab",
     //   color: "white!important",
     // },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "20%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "10%",
+    },
+    [sizes.down("sm")]: {
+      width: "100%",
+      height: "5%",
+    },
   },
   boxContent: {
     position: "absolute",
@@ -24,6 +37,8 @@ const styles = {
     justifyContent: "space-between",
     padding: "0 5px 5px 5px",
     alignItems: "center",
+    userSelect: "none" /* Non-prefixed version, currently
+                                 supported by Chrome and Opera */,
   },
   colorName: {
     textTransform: "uppercase",

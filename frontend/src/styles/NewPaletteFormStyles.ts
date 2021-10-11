@@ -1,12 +1,14 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import sizes from "./sizes";
 
-const drawerWidth = 400;
+const drawerWidth = 375;
 const appBarHeight = 64;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      height: "100vh",
     },
     appBar: {
       // height: `${appBarHeight}px`,
@@ -25,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      [sizes.down("xs")]: {
+        marginRight: "0",
+      },
     },
     hide: {
       display: "none",
@@ -63,6 +68,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navButtons: {
       margin: `0px ${theme.spacing(1)}px`,
+      [sizes.down("xs")]: {
+        margin: `0px 1px`,
+        textAlign: "center",
+        padding: "3px 6px",
+        fontSize: "0.7rem",
+      },
     },
     formWrapper: {
       // width: "100%",
@@ -91,6 +102,11 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       alignItems: "center",
       justifyContent: "space-between",
+    },
+    toolbarTitle: {
+      [sizes.down("xs")]: {
+        fontSize: "1rem",
+      },
     },
   })
 );
