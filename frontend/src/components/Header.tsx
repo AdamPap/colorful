@@ -44,27 +44,25 @@ const Header = ({ isAllColorsPalette }: HeaderProps) => {
       <h1 className={logo}>
         <Link href={"/"}>Colorful</Link>
       </h1>
-      <div className={sliderContainer}>
-        {isAllColorsPalette && (
-          <div className={sliderContainer}>
-            <Typography>Select color shade</Typography>
-            <Slider
-              value={value}
-              className={slider}
-              defaultValue={level}
-              // getAriaValueText={valuetext}
-              aria-labelledby="discrete-slider-small-steps"
-              step={100}
-              marks
-              min={100}
-              max={900}
-              valueLabelDisplay="auto"
-              onChangeCommitted={handleChange}
-            />
-          </div>
-        )}
-        <SelectFormat showSnackbar={showSnackbar} />
-      </div>
+      {isAllColorsPalette && (
+        <div className={sliderContainer}>
+          <Typography>{`Shade Level: ${level}`}</Typography>
+          <Slider
+            value={value}
+            className={slider}
+            defaultValue={level}
+            // getAriaValueText={valuetext}
+            aria-labelledby="discrete-slider-small-steps"
+            step={100}
+            marks
+            min={100}
+            max={900}
+            valueLabelDisplay="auto"
+            onChange={handleChange}
+          />
+        </div>
+      )}
+      <SelectFormat showSnackbar={showSnackbar} />
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={isSnackbarOpen}
