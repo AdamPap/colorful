@@ -1,12 +1,15 @@
 import sizes from "./sizes";
 
 const styles = {
-  // PaletteList: {
-  //   display: "flex",
-  //   flexWrap: "wrap" as "wrap",
-  //   justifyContent: "space-around",
-  //   alignItems: "flex-start",
-  // },
+  "@global": {
+    ".fade-exit": {
+      opacity: 1,
+    },
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms eae-out",
+    },
+  },
   PaletteList: {
     display: "grid",
     gridTemplateColumns: "auto auto auto",
