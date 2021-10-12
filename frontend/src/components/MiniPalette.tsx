@@ -1,13 +1,14 @@
 import Delete from "@material-ui/icons/Delete";
 import Link from "next/link";
-import { useContext } from "react";
-import { PaletteContext } from "../contexts/PaletteContext";
 import useStyles from "../styles/MiniPaletteStyles";
 
-const MiniPalette = (palette: Palette) => {
-  const classes = useStyles();
+interface MiniPaletteProps {
+  palette: Palette;
+  showDialog: (pid: string) => void;
+}
 
-  const { palettes, changePalettes } = useContext(PaletteContext);
+const MiniPalette = ({ palette, showDialog }: MiniPaletteProps) => {
+  const classes = useStyles();
 
   const colors = palette.colors.map((color: Color) => (
     <div
@@ -17,14 +18,9 @@ const MiniPalette = (palette: Palette) => {
     ></div>
   ));
 
-  const deletePalette = () => {
-    const newPalettes = palettes.filter((p) => p.id !== palette.id);
-    changePalettes(newPalettes);
-  };
-
   return (
     <div className={classes.root}>
-      <div className={classes.delete} onClick={deletePalette}>
+      <div className={classes.delete} onClick={() => showDialog(palette.id)}>
         <Delete fontSize="small" />
       </div>
       <Link passHref href={`/palettes/${palette.id}`} key={palette.id}>

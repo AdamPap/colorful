@@ -1,26 +1,38 @@
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import sizes from "./sizes";
 
-const styles = {
-  "@global": {
-    ".fade-exit": {
-      opacity: 1,
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    "@global": {
+      ".fade-exit": {
+        opacity: 1,
+      },
+      ".fade-exit-active": {
+        opacity: 0,
+        transition: "opacity 500ms eae-out",
+      },
     },
-    ".fade-exit-active": {
-      opacity: 0,
-      transition: "opacity 500ms eae-out",
+    PaletteList: {
+      display: "grid",
+      gridTemplateColumns: "auto auto auto",
+      gridGap: "20px",
+      [sizes.down("sm")]: {
+        gridTemplateColumns: "auto auto",
+      },
+      [sizes.down("xs")]: {
+        gridTemplateColumns: "auto",
+      },
     },
-  },
-  PaletteList: {
-    display: "grid",
-    gridTemplateColumns: "auto auto auto",
-    gridGap: "20px",
-    [sizes.down("sm")]: {
-      gridTemplateColumns: "auto auto",
+    buttonContainer: {
+      display: "flex",
+      justifyContent: "space-around",
+      padding: "6px 16px",
     },
-    [sizes.down("xs")]: {
-      gridTemplateColumns: "auto",
+    button: {
+      width: "48%",
+      textAlign: "center",
     },
-  },
-};
+  })
+);
 
-export default styles;
+export default useStyles;
